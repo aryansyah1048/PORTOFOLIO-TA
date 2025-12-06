@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Aryansyah — Portfolio</title>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+
+    <style>
+      :root {
+        --neon: #00ff88;
+        --glass: rgba(255, 255, 255, 0.08);
+        --dark: #020202;
+      }
+
+      /* ===================== BODY ===================== */
+      body {
+        margin: 0;
+        background: var(--dark);
+        color: #fff;
+        font-family: Inter, sans-serif;
+        overflow-x: hidden;
+      }
+
+      /* ===================== NEW MODERN NAVBAR ===================== */
+      .navbar {
+        position: fixed;
+        top: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 85%;
+        padding: 15px 25px;
+        border-radius: 18px;
+        backdrop-filter: blur(12px);
+        background: rgba(0, 0, 0, 0.45);
+        border: 1px solid rgba(0, 255, 136, 0.2);
+        box-shadow: 0 0 18px rgba(0, 255, 136, 0.1);
+        z-index: 999;
+
+        opacity: 0;
+        animation: navbarFade 0.9s ease forwards;
+      }
+
+      @keyframes navbarFade {
+        from {
+          opacity: 0;
+          transform: translate(-50%, -20px);
+        }
+        to {
+          opacity: 1;
+          transform: translate(-50%, 0);
+        }
+      }
+
+      .nav-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .nav-logo {
+        font-size: 26px;
+        font-weight: 700;
+        color: var(--neon);
+        letter-spacing: 2px;
+        transition: 0.3s ease;
+      }
+
+      .nav-logo:hover {
+        transform: scale(1.05);
+        text-shadow: 0 0 14px var(--neon);
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 35px;
+        list-style: none;
+      }
+
+      .nav-links a {
+        text-decoration: none;
+        color: #baffd7;
+        font-weight: 500;
+        position: relative;
+        font-size: 17px;
+        transition: 0.25s ease;
+      }
+
+      .nav-links a::after {
+        content: "";
+        position: absolute;
+        height: 2px;
+        width: 0%;
+        bottom: -5px;
+        left: 0;
+        background: var(--neon);
+        transition: 0.3s ease;
+      }
+
+      .nav-links a:hover {
+        color: var(--neon);
+      }
+
+      .nav-links a:hover::after {
+        width: 100%;
+      }
+
+      /* ===================== HERO ===================== */
+      .hero {
+        height: 100vh;
+        position: relative;
+        display: flex;
+        align-items: center;
+      }
+
+      .hero img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: brightness(40%);
+      }
+
+      .hero-content {
+        position: absolute;
+        left: 10%;
+        max-width: 850px;
+        animation: heroFade 1.4s ease forwards;
+        opacity: 0;
+      }
+
+      @keyframes heroFade {
+        from {
+          opacity: 0;
+          transform: translateY(35px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .intro h2 {
+        font-size: 22px;
+        font-weight: 300;
+        margin-bottom: 4px;
+      }
+
+      .intro h1 {
+        font-size: 54px;
+        font-weight: 800;
+        color: var(--neon);
+        text-shadow: 0 0 18px rgba(0, 255, 136, 0.45);
+      }
+
+      /*  HIGHLIGHT BOX NEW ANIMATION  */
+      .highlight-box {
+        display: inline-block;
+        background: rgba(0, 255, 136, 0.22);
+        border: 1px solid rgba(0, 255, 136, 0.35);
+        padding: 12px 20px;
+        border-radius: 12px;
+
+        /* Jangan opacity 0 total → bikin kadang hilang */
+        opacity: 0.001;
+        transform: translateY(45px) scale(0.88);
+
+        animation: highlightAppear 0.95s ease-out forwards;
+      }
+
+      /* SMOOTH PREMIUM SPRING */
+      @keyframes highlightAppear {
+        0% {
+          opacity: 0.001;
+          transform: translateY(45px) scale(0.88);
+        }
+        55% {
+          opacity: 1;
+          transform: translateY(-14px) scale(1.05);
+        }
+        78% {
+          transform: translateY(5px) scale(0.97);
+        }
+        90% {
+          transform: translateY(-3px) scale(1.02);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
+      }
+
+      .label-text {
+        font-size: 30px;
+        font-weight: 600;
+      }
+
+      .role-row {
+        margin-top: 28px;
+        display: flex;
+        align-items: center;
+        gap: 14px;
+      }
+
+      /*  TYPING TEXT  */
+      .typing-text {
+        font-size: 38px;
+        font-weight: 700;
+        color: var(--neon);
+        min-width: 250px;
+        text-shadow: 0 0 10px rgba(0, 255, 136, 0.6);
+      }
+
+      /*SOCIAL ICONS */
+      .social-icons {
+        margin-top: 32px;
+        display: flex;
+        gap: 28px;
+        font-size: 50px;
+      }
+
+      .social-icons a {
+        color: #fff;
+        transition: 0.3s ease;
+      }
+
+      .social-icons a:hover {
+        color: var(--neon);
+        transform: translateY(-5px) scale(1.12);
+        text-shadow: 0 0 14px var(--neon);
+      }
+      /* ===================== ABOUT SECTION ===================== */
+      .about-section {
+        width: 100%;
+        padding: 120px 10%;
+        background: #050505;
+        position: relative;
+      }
+
+      /* Green neon line divider */
+      .about-section::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 10%;
+        width: 80%;
+        height: 1px;
+        background: rgba(0, 255, 136, 0.4);
+        box-shadow: 0 0 12px rgba(0, 255, 136, 0.7);
+      }
+
+      /* Section title */
+      .section-title {
+        font-size: 42px;
+        font-weight: 800;
+        color: var(--neon);
+        margin-bottom: 15px;
+        text-shadow: 0 0 18px rgba(0, 255, 136, 0.5);
+        position: relative;
+      }
+
+      /* Subtitle small neon text */
+      .section-subtitle {
+        font-size: 18px;
+        color: #baffd8;
+        opacity: 0.8;
+        margin-bottom: 45px;
+      }
+
+      /* About container grid */
+      .about-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 60px;
+        align-items: center;
+      }
+
+      /*  LEFT TEXT  */
+      .about-text {
+        font-size: 18px;
+        line-height: 1.7;
+        color: #e8ffe8;
+        opacity: 0;
+        transform: translateY(30px);
+        animation: fadeUp 1s ease forwards;
+      }
+
+      .about-text strong {
+        color: var(--neon);
+      }
+
+      /*  RIGHT CYBER CARD  */
+      .cyber-card {
+        background: rgba(0, 255, 136, 0.08);
+        border: 1px solid rgba(0, 255, 136, 0.35);
+        border-radius: 16px;
+        padding: 35px;
+        backdrop-filter: blur(10px);
+        box-shadow: 0 0 18px rgba(0, 255, 136, 0.15);
+
+        opacity: 0;
+        transform: translateY(40px);
+        animation: cardPop 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+      }
+
+      /* Cyber icon list */
+      .cyber-list {
+        margin-top: 25px;
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+      }
+
+      .cyber-item {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        font-size: 18px;
+        color: #d9ffe6;
+      }
+
+      .cyber-item i {
+        font-size: 28px;
+        color: var(--neon);
+        text-shadow: 0 0 10px rgba(0, 255, 136, 0.7);
+      }
+
+      /* Animations */
+      @keyframes fadeUp {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes cardPop {
+        0% {
+          opacity: 0;
+          transform: translateY(40px) scale(0.9);
+        }
+        60% {
+          opacity: 1;
+          transform: translateY(-10px) scale(1.04);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
+      }
+      /* Profile Image Wrapper */
+      .profile-photo {
+        width: 280px;
+        height: 280px;
+        border-radius: 50%;
+        overflow: hidden;
+        border: 4px solid rgba(0, 255, 136, 0.7);
+        box-shadow: 0 0 18px rgba(0, 255, 136, 0.5),
+          0 0 35px rgba(0, 255, 136, 0.25);
+        transition: 0.3s ease;
+        margin: auto;
+        position: relative;
+
+        opacity: 0;
+        transform: translateY(40px) scale(0.8);
+        animation: photoPop 1.25s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+      }
+
+      .profile-photo:hover {
+        transform: scale(1.03);
+        box-shadow: 0 0 22px rgba(0, 255, 136, 0.7),
+          0 0 55px rgba(0, 255, 136, 0.45);
+      }
+
+      .profile-photo img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      /* Photo animation */
+      @keyframes photoPop {
+        0% {
+          opacity: 0;
+          transform: translateY(50px) scale(0.75);
+        }
+        60% {
+          opacity: 1;
+          transform: translateY(-12px) scale(1.05);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
+      }
+      .about-text p {
+        font-size: 18px;
+        line-height: 1.75;
+        color: #e8ffe8;
+      }
+
+      .about-text p i {
+        font-size: 20px;
+        vertical-align: middle;
+        text-shadow: 0 0 10px rgba(0, 255, 136, 0.6);
+      }
+      /* ============================ SKILL SECTION ============================= */
+      .skill-wrapper {
+        padding: 90px 10%;
+        background: #050505;
+      }
+
+      .skill-title {
+        text-align: center;
+        font-size: 40px;
+        font-weight: 800;
+        color: var(--neon);
+        margin-bottom: 10px;
+      }
+
+      .skill-subtitle {
+        text-align: center;
+        font-size: 17px;
+        color: #baffd7;
+        opacity: 0.8;
+        margin-bottom: 50px;
+      }
+
+      .skill-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+        gap: 40px;
+        justify-items: center;
+      }
+
+      .skill-item {
+        text-align: center;
+      }
+
+      .circle {
+        width: 115px;
+        height: 115px;
+        border-radius: 50%;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #0d0d0d;
+        border: 3px solid rgba(0, 255, 136, 0.2);
+        overflow: hidden;
+      }
+
+      .circle svg {
+        width: 115px;
+        height: 115px;
+        transform: rotate(-90deg);
+      }
+
+      .circle .progress {
+        stroke: var(--neon);
+        stroke-width: 7;
+        stroke-linecap: round;
+        fill: none;
+        stroke-dasharray: 360;
+        stroke-dashoffset: 360;
+        transition: stroke-dashoffset 0.2s linear;
+      }
+
+      .circle i {
+        position: absolute;
+        font-size: 32px;
+        color: var(--neon);
+        text-shadow: 0 0 10px rgba(0, 255, 136, 0.6);
+      }
+
+      .skill-label {
+        margin-top: 12px;
+        font-size: 17px;
+        color: #eaffea;
+        font-weight: 600;
+      }
+
+      /* ========================= TECH SECTION =================== */
+      .tech-section {
+        padding: 100px 0;
+        background: #111;
+      }
+
+      .tech-title {
+        text-align: center;
+        color: var(--neon);
+        font-size: 32px;
+        margin-bottom: 40px;
+      }
+      .wrapper {
+        width: 95%;
+        height: 100px;
+        margin: 100px auto;
+        position: relative;
+        overflow: hidden;
+        border-radius: 8px;
+      }
+
+      /* STYLE PER ITEM */
+      .item {
+        width: 60px;
+        height: 60px;
+        object-fit: contain;
+        position: absolute;
+        top: 15px;
+        will-change: left;
+        filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.26));
+
+        animation: scrollLeft 12s linear infinite;
+      }
+
+      .reverse .item {
+        animation-name: scrollRight;
+      }
+
+      /* Gerak ke kiri */
+      @keyframes scrollLeft {
+        from {
+          left: 100%;
+        }
+        to {
+          left: -120px;
+        }
+      }
+
+      /* Gerak ke kanan */
+      @keyframes scrollRight {
+        from {
+          left: -120px;
+        }
+        to {
+          left: 100%;
+        }
+      }
+
+      /* GENERATE ANIMATION DELAY OTOMATIS */
+      .wrapper .item:nth-child(1) {
+        animation-delay: 0s;
+      }
+      .wrapper .item:nth-child(2) {
+        animation-delay: -2s;
+      }
+      .wrapper .item:nth-child(3) {
+        animation-delay: -4s;
+      }
+      .wrapper .item:nth-child(4) {
+        animation-delay: -6s;
+      }
+      .wrapper .item:nth-child(5) {
+        animation-delay: -8s;
+      }
+      .wrapper .item:nth-child(6) {
+        animation-delay: -10s;
+      }
+      .wrapper .item:nth-child(7) {
+        animation-delay: -12s;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- NAVBAR BARU -->
+    <nav class="navbar">
+      <div class="nav-container">
+        <div class="nav-logo">Aryansyah.dev</div>
+
+        <ul class="nav-links">
+          <li><a href="#project">Project</a></li>
+          <li><a href="#blogs">Blogs</a></li>
+          <li><a href="#exp">Experience</a></li>
+          <li><a href="#ctf">CTF</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- HERO -->
+    <div class="hero">
+      <img src="assets/hero.jpeg" alt="profile" />
+
+      <div class="hero-content">
+        <div class="intro">
+          <h2>Hai, nama saya</h2>
+          <h1>Aryansyah Mahendra</h1>
+        </div>
+
+        <div class="role-row">
+          <div class="highlight-box">
+            <span class="label-text">Saya adalah</span>
+          </div>
+
+          <span class="typing-text"></span>
+        </div>
+
+        <div class="social-icons">
+          <a href="https://github.com/aryansyah1048"
+            ><i class="fa-brands fa-github"></i>
+          </a>
+          <a href="https://www.instagram.com/aryansyahm._" target="_blank"
+            ><i class="fa-brands fa-instagram"></i
+          ></a>
+          <a href="#"><i class="fa-brands fa-linkedin"></i> </a>
+        </div>
+      </div>
+    </div>
+
+    <section class="about-section" id="about">
+      <h2 class="section-title">
+        <i class="fa-solid fa-user-astronaut"></i> About Me
+      </h2>
+
+      <p class="section-subtitle">
+        <i class="fa-solid fa-fingerprint"></i> Cyber Security • Web Developer •
+        CTF Player
+      </p>
+
+      <div class="about-container">
+        <!-- LEFT TEXT -->
+        <div class="about-text">
+          <p>
+            <i
+              class="fa-solid fa-user-shield"
+              style="color: var(--neon); margin-right: 8px"
+            ></i>
+            Saya <strong>Aryansyah Mahendra</strong>, seorang
+            <strong>Cyber Security Enthusiast</strong> yang mendalami keamanan
+            informasi, web exploitation, dan teknik penetrasi modern. Saya aktif
+            sebagai <strong>CTF Player</strong> serta memiliki minat besar dalam
+            menganalisis kerentanan, reverse engineering, dan membangun solusi
+            keamanan yang efektif. Selain itu, saya juga seorang
+            <strong>Web Developer</strong> yang berfokus pada pendekatan
+            secure-by-design untuk menciptakan aplikasi yang aman, modern, dan
+            berkinerja tinggi.
+          </p>
+        </div>
+
+        <!-- RIGHT PROFILE PHOTO -->
+        <div class="profile-photo">
+          <img src="assets/me.jpg" alt="Profile" />
+        </div>
+      </div>
+    </section>
+
+    <!-- HARD N SOFT SKILL -->
+    <section class="skill-wrapper" id="skills">
+      <h2 class="skill-title">Skills</h2>
+      <p class="skill-subtitle">Hard Skill & Soft Skill</p>
+
+      <div class="skill-grid">
+        <!-- HARD SKILL -->
+        <div class="skill-item">
+          <div class="circle" data-percent="59">
+            <svg>
+              <circle class="progress" cx="57" cy="57" r="55"></circle>
+            </svg>
+            <i class="fa-solid fa-shield-halved"></i>
+          </div>
+          <div class="skill-label">CyberSecurity</div>
+        </div>
+
+        <div class="skill-item">
+          <div class="circle" data-percent="80">
+            <svg><circle class="progress" cx="57" cy="57" r="55"></circle></svg>
+            <i class="fa-solid fa-flag"></i>
+          </div>
+          <div class="skill-label">CTF</div>
+        </div>
+
+        <div class="skill-item">
+          <div class="circle" data-percent="75">
+            <svg><circle class="progress" cx="57" cy="57" r="55"></circle></svg>
+            <i class="fa-solid fa-code"></i>
+          </div>
+          <div class="skill-label">Web Dev</div>
+        </div>
+
+        <div class="skill-item">
+          <div class="circle" data-percent="70">
+            <svg><circle class="progress" cx="57" cy="57" r="55"></circle></svg>
+            <i class="fa-solid fa-pen-nib"></i>
+          </div>
+          <div class="skill-label">Design</div>
+        </div>
+
+        <div class="skill-item">
+          <div class="circle" data-percent="85">
+            <svg><circle class="progress" cx="57" cy="57" r="55"></circle></svg>
+            <i class="fa-solid fa-network-wired"></i>
+          </div>
+          <div class="skill-label">Networking</div>
+        </div>
+
+        <div class="skill-item">
+          <div class="circle" data-percent="90">
+            <svg><circle class="progress" cx="57" cy="57" r="55"></circle></svg>
+            <i class="fa-solid fa-users"></i>
+          </div>
+          <div class="skill-label">Teamwork</div>
+        </div>
+
+        <!-- SOFT SKILL -->
+        <div class="skill-item">
+          <div class="circle" data-percent="90">
+            <svg><circle class="progress" cx="57" cy="57" r="55"></circle></svg>
+            <i class="fa-solid fa-puzzle-piece"></i>
+          </div>
+          <div class="skill-label">Problem Solving</div>
+        </div>
+
+        <div class="skill-item">
+          <div class="circle" data-percent="85">
+            <svg><circle class="progress" cx="57" cy="57" r="55"></circle></svg>
+            <i class="fa-solid fa-comments"></i>
+          </div>
+          <div class="skill-label">Communication</div>
+        </div>
+
+        <div class="skill-item">
+          <div class="circle" data-percent="85">
+            <svg><circle class="progress" cx="57" cy="57" r="55"></circle></svg>
+            <i class="fa-solid fa-book"></i>
+          </div>
+          <div class="skill-label">Learnabilty</div>
+        </div>
+        <div class="skill-item">
+          <div class="circle" data-percent="85">
+            <svg><circle class="progress" cx="57" cy="57" r="55"></circle></svg>
+            <i class="fa-solid fa-lightbulb"></i>
+          </div>
+          <div class="skill-label">Creativity</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TECH SECTION -->
+    <section class="tech-section">
+      <h2 class="tech-title">Technologies I Have Learned</h2>
+
+      <!-- ROW 1 -->
+      <div class="wrapper">
+        <img class="item" src="assets/Laravel.svg" />
+        <img class="item" src="assets/MongoDB.svg" />
+        <img class="item" src="assets/Express.svg" />
+        <img class="item" src="assets/Bootstrap.svg" />
+        <img class="item" src="assets/Tailwind CSS.svg" />
+        <img class="item" src="assets/Django.svg" />
+        <img class="item" src="assets/vscode.svg" />
+        <img class="item" src="assets/React.svg" />
+        <img class="item" src="assets/JQuery.svg" />
+        <img class="item" src="assets/GitHub.svg" />
+        <img class="item" src="assets/MySQL.svg" />
+      </div>
+
+      <!-- ROW 2 -->
+      <div class="wrapper reverse">
+        <img class="item" src="assets/Vercel.svg" />
+        <img class="item" src="assets/Figma.svg" />
+        <img class="item" src="assets/Linux.svg" />
+        <img class="item" src="assets/burpsuite.svg" />
+        <img class="item" src="assets/Ghidra.svg" />
+        <img class="item" src="assets/TypeScript.svg" />
+        <img class="item" src="assets/next.js.svg" />
+        <img class="item" src="assets/DBeaver.svg" />
+        <img class="item" src="assets/Docker.svg" />
+        <img class="item" src="assets/Wireshark_icon.svg" />
+        <img class="item" src="assets/Node.js.svg" />
+      </div>
+    </section>
+
+    <script>
+      const roles = [
+        "CTF Player",
+        "Cyber Security",
+        "Web Developer",
+        "IT Enthusiast",
+      ];
+
+      const textEl = document.querySelector(".typing-text");
+
+      let index = 0;
+      let char = 0;
+      let deleting = false;
+
+      function type() {
+        let word = roles[index];
+
+        if (!deleting) {
+          textEl.textContent = word.substring(0, char) + "_";
+          char++;
+
+          if (char === word.length + 1) {
+            deleting = true;
+            setTimeout(type, 1000);
+            return;
+          }
+        } else {
+          textEl.textContent = word.substring(0, char) + "_";
+          char--;
+
+          if (char < 0) {
+            deleting = false;
+            index = (index + 1) % roles.length;
+            char = 0;
+          }
+        }
+
+        setTimeout(type, deleting ? 40 : 70);
+      }
+
+      type();
+
+      // SKILL ANIMASI
+
+      function animateSkills() {
+        document.querySelectorAll(".circle").forEach((circle) => {
+          let target = circle.getAttribute("data-percent");
+          let progress = circle.querySelector(".progress");
+
+          let current = 0;
+          let maxDash = 360;
+
+          let interval = setInterval(() => {
+            current++;
+            let offset = maxDash - (maxDash * current) / 100;
+
+            progress.style.strokeDashoffset = offset;
+
+            if (current >= target) clearInterval(interval);
+          }, 20);
+        });
+      }
+
+      // aktif ketika terlihat
+      const skillSection = document.querySelector("#skills");
+      let skillPlayed = false;
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !skillPlayed) {
+            animateSkills();
+            skillPlayed = true;
+          }
+        });
+      });
+
+      observer.observe(skillSection);
+
+      /* ==============================
+       TECH SECTION ANIMATION
+    =============================== */
+      document.querySelectorAll(".wrapper").forEach((row) => {
+        const items = row.querySelectorAll(".item");
+        const total = items.length;
+        const duration = 12;
+
+        items.forEach((item, index) => {
+          const delay = -(duration / total) * index;
+          item.style.animationDelay = `${delay}s`;
+        });
+      });
+    </script>
+  </body>
+</html>
