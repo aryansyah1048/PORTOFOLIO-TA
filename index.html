@@ -735,6 +735,76 @@
         align-items: center;
       }
 
+
+/* ===================== HIGHLIGHT / STATS SECTION ===================== */
+
+.highlight-section {
+  width: 100%;
+  padding: 90px 0;
+  background: #020202;
+  display: flex;
+  justify-content: center;
+}
+
+.highlight-container {
+  max-width: 1100px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 20px;
+
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+}
+
+.highlight-card {
+  background: rgba(0, 255, 136, 0.06);
+  border: 1px solid rgba(0, 255, 136, 0.25);
+  border-radius: 18px;
+  padding: 30px 20px;
+  text-align: center;
+  backdrop-filter: blur(10px);
+  transition: 0.35s ease;
+}
+
+.highlight-card:hover {
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 0 25px rgba(0, 255, 136, 0.35);
+}
+
+.highlight-card h3 {
+  font-size: 42px;
+  font-weight: 800;
+  color: var(--neon);
+  margin-bottom: 6px;
+  text-shadow: 0 0 14px rgba(0, 255, 136, 0.45);
+}
+
+.highlight-card p {
+  font-size: 15px;
+  color: #baffd7;
+  opacity: 0.9;
+}
+
+/* ===================== RESPONSIVE ===================== */
+
+@media (max-width: 900px) {
+  .highlight-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .highlight-container {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .highlight-card h3 {
+    font-size: 36px;
+  }
+}
+
       /* SB */
     </style>
   </head>
@@ -951,6 +1021,33 @@
         <img class="item" src="assets/Node.js.svg" />
       </div>
     </section>
+    <!-- TECH SECTION -->
+
+    <!-- HIGHLIGHT SECTION -->
+<section class="highlight-section">
+  <div class="highlight-container">
+    <div class="highlight-card">
+      <h3 data-count="30">0</h3>
+      <p>CTF Challenges Solved</p>
+    </div>
+
+    <div class="highlight-card">
+      <h3 data-count="15">0</h3>
+      <p>Web Projects Built</p>
+    </div>
+
+    <div class="highlight-card">
+      <h3 data-count="10">0</h3>
+      <p>Security Labs Completed</p>
+    </div>
+
+    <div class="highlight-card">
+      <h3 data-count="3">0</h3>
+      <p>Years Learning IT</p>
+    </div>
+  </div>
+</section>
+
 
     <script>
       const roles = [
