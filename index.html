@@ -735,70 +735,93 @@
 
       /* ===================== HIGHLIGHT / STATS SECTION ===================== */
 
-      .highlight-section {
+      /* ===================== VALUE STRIP ===================== */
+
+      .value-section {
         width: 100%;
-        padding: 90px 0;
-        background: #020202;
-        display: flex;
-        justify-content: center;
+        padding: 110px 0;
+        background: radial-gradient(
+          circle at top,
+          rgba(0, 255, 136, 0.12),
+          #020202 60%
+        );
       }
 
-      .highlight-container {
+      .value-container {
         max-width: 1100px;
-        width: 100%;
         margin: 0 auto;
         padding: 0 20px;
 
         display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 30px;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 40px;
       }
 
-      .highlight-card {
+      .value-card {
+        position: relative;
         background: rgba(0, 255, 136, 0.06);
         border: 1px solid rgba(0, 255, 136, 0.25);
-        border-radius: 18px;
-        padding: 30px 20px;
+        border-radius: 22px;
+        padding: 45px 30px;
         text-align: center;
-        backdrop-filter: blur(10px);
-        transition: 0.35s ease;
+
+        backdrop-filter: blur(14px);
+        transition: 0.45s cubic-bezier(0.2, 0.8, 0.2, 1);
       }
 
-      .highlight-card:hover {
-        transform: translateY(-8px) scale(1.03);
-        box-shadow: 0 0 25px rgba(0, 255, 136, 0.35);
+      .value-card::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        background: linear-gradient(
+          120deg,
+          transparent,
+          rgba(0, 255, 136, 0.25),
+          transparent
+        );
+        opacity: 0;
+        transition: 0.4s;
       }
 
-      .highlight-card h3 {
-        font-size: 42px;
-        font-weight: 800;
+      .value-card:hover::before {
+        opacity: 1;
+      }
+
+      .value-card:hover {
+        transform: translateY(-14px) scale(1.04);
+        box-shadow: 0 0 35px rgba(0, 255, 136, 0.45);
+      }
+
+      /* ICON */
+      .value-card i {
+        font-size: 48px;
         color: var(--neon);
-        margin-bottom: 6px;
-        text-shadow: 0 0 14px rgba(0, 255, 136, 0.45);
+        margin-bottom: 20px;
+        text-shadow: 0 0 18px rgba(0, 255, 136, 0.6);
       }
 
-      .highlight-card p {
+      /* TITLE */
+      .value-card h3 {
+        font-size: 22px;
+        font-weight: 700;
+        margin-bottom: 12px;
+      }
+
+      /* DESC */
+      .value-card p {
         font-size: 15px;
-        color: #baffd7;
+        line-height: 1.6;
+        color: #dfffe9;
         opacity: 0.9;
       }
 
       /* ===================== RESPONSIVE ===================== */
 
       @media (max-width: 900px) {
-        .highlight-container {
-          grid-template-columns: repeat(2, 1fr);
-        }
-      }
-
-      @media (max-width: 480px) {
-        .highlight-container {
+        .value-container {
           grid-template-columns: 1fr;
-          gap: 20px;
-        }
-
-        .highlight-card h3 {
-          font-size: 36px;
+          gap: 30px;
         }
       }
 
@@ -1022,29 +1045,36 @@
     <!-- TECH SECTION -->
 
     <!-- HIGHLIGHT SECTION -->
-    <section class="highlight-section">
-      <div class="highlight-container">
-        <div class="highlight-card">
-          <h3 data-count="30">0</h3>
-          <p>CTF Challenges Solved</p>
+    <section class="value-section">
+      <div class="value-container">
+        <div class="value-card">
+          <i class="fa-solid fa-shield-halved"></i>
+          <h3>Security Mindset</h3>
+          <p>
+            Secure-by-design approach in every web application and system I
+            build.
+          </p>
         </div>
 
-        <div class="highlight-card">
-          <h3 data-count="15">0</h3>
-          <p>Web Projects Built</p>
+        <div class="value-card">
+          <i class="fa-solid fa-flag"></i>
+          <h3>CTF Experience</h3>
+          <p>
+            Actively solving real-world security challenges & attack scenarios.
+          </p>
         </div>
 
-        <div class="highlight-card">
-          <h3 data-count="10">0</h3>
-          <p>Security Labs Completed</p>
-        </div>
-
-        <div class="highlight-card">
-          <h3 data-count="3">0</h3>
-          <p>Years Learning IT</p>
+        <div class="value-card">
+          <i class="fa-solid fa-code"></i>
+          <h3>Modern Web Dev</h3>
+          <p>
+            Building fast, scalable, and maintainable web apps with modern
+            stacks.
+          </p>
         </div>
       </div>
     </section>
+    <!-- END HIGHTLIGT SECTION -->
 
     <script>
       const roles = [
