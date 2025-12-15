@@ -271,121 +271,119 @@
       }
 
       /* =====================  ABOUT SECTION ===================== */
-.about-section {
-  width: 100%;
-  padding: 120px 0;
-  background: linear-gradient(180deg, #050505, #020202);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
+      .about-section {
+        width: 100%;
+        padding: 120px 0;
+        background: linear-gradient(180deg, #050505, #020202);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
 
+      /* TITLE */
+      .section-title {
+        text-align: center;
+        font-size: 40px;
+        font-weight: 800;
+        color: var(--neon);
+        margin-bottom: 8px;
+        text-shadow: 0 0 14px rgba(0, 255, 136, 0.35);
+      }
 
-/* TITLE */
-.section-title {
-  text-align: center;
-  font-size: 40px;
-  font-weight: 800;
-  color: var(--neon);
-  margin-bottom: 8px;
-  text-shadow: 0 0 14px rgba(0, 255, 136, 0.35);
-}
+      .section-subtitle {
+        text-align: center;
+        font-size: 16px;
+        color: #baffd7;
+        opacity: 0.85;
+        margin-bottom: 70px;
+      }
 
-.section-subtitle {
-  text-align: center;
-  font-size: 16px;
-  color: #baffd7;
-  opacity: 0.85;
-  margin-bottom: 70px;
-}
+      /* CONTAINER */
+      .about-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        max-width: 1100px;
+        width: 100%;
+        margin: 0 auto;
+        align-items: center;
+        justify-items: center;
+        gap: 60px;
+        padding: 0 20px;
+      }
 
-/* CONTAINER */
-.about-container {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  max-width: 1100px;
-  width: 100%;
-  margin: 0 auto;
-  align-items: center;
-  justify-items: center;
-  gap: 60px;
-    padding: 0 20px;
-}
+      /* TEXT */
+      .about-text {
+        max-width: 520px;
+        font-size: 18px;
+        line-height: 1.8;
+        color: #eaffea;
+      }
 
+      .about-text p {
+        margin-bottom: 20px;
+      }
 
-/* TEXT */
-.about-text {
-  max-width: 520px;
-  font-size: 18px;
-  line-height: 1.8;
-  color: #eaffea;
-}
+      /* PHOTO */
+      .profile-photo {
+        width: 280px;
+        height: 280px;
+        border-radius: 50%;
+        overflow: hidden;
+        border: 4px solid rgba(0, 255, 136, 0.65);
+        box-shadow: 0 0 25px rgba(0, 255, 136, 0.35);
+        transition: 0.4s ease;
+      }
 
-.about-text p {
-  margin-bottom: 20px;
-}
+      .profile-photo:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 35px rgba(0, 255, 136, 0.6);
+      }
 
-/* PHOTO */
-.profile-photo {
-  width: 280px;
-  height: 280px;
-  border-radius: 50%;
-  overflow: hidden;
-  border: 4px solid rgba(0, 255, 136, 0.65);
-  box-shadow: 0 0 25px rgba(0, 255, 136, 0.35);
-  transition: 0.4s ease;
-}
+      .profile-photo img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
 
-.profile-photo:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 35px rgba(0, 255, 136, 0.6);
-}
+      /* ===================== RESPONSIVE ===================== */
 
-.profile-photo img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
+      /* TABLET & MOBILE */
+      @media (max-width: 900px) {
+        .about-container {
+          grid-template-columns: 1fr;
+          gap: 45px;
+        }
 
-/* ===================== RESPONSIVE ===================== */
+        .profile-photo {
+          order: -1;
+        }
 
-/* TABLET & MOBILE */
-@media (max-width: 900px) {
-  .about-container {
-    grid-template-columns: 1fr;
-    gap: 45px;
-  }
+        .about-text {
+          text-align: center;
+          max-width: 90%;
+        }
+      }
 
-  .profile-photo {
-    order: -1;
-  }
+      /* MOBILE */
+      @media (max-width: 480px) {
+        .section-title {
+          font-size: 32px;
+        }
 
-  .about-text {
-    text-align: center;
-    max-width: 90%;
-  }
-}
+        .section-subtitle {
+          font-size: 14px;
+          margin-bottom: 50px;
+        }
 
-/* MOBILE */
-@media (max-width: 480px) {
-  .section-title {
-    font-size: 32px;
-  }
+        .profile-photo {
+          width: 200px;
+          height: 200px;
+        }
 
-  .section-subtitle {
-    font-size: 14px;
-    margin-bottom: 50px;
-  }
-
-  .profile-photo {
-    width: 200px;
-    height: 200px;
-  }
-
-  .about-text {
-    font-size: 16px;
-  }
-}
+        .about-text {
+          font-size: 16px;
+        }
+      }
 
       /* ===================== END ABOUT SECTION ===================== */
 
@@ -735,75 +733,74 @@
         align-items: center;
       }
 
+      /* ===================== HIGHLIGHT / STATS SECTION ===================== */
 
-/* ===================== HIGHLIGHT / STATS SECTION ===================== */
+      .highlight-section {
+        width: 100%;
+        padding: 90px 0;
+        background: #020202;
+        display: flex;
+        justify-content: center;
+      }
 
-.highlight-section {
-  width: 100%;
-  padding: 90px 0;
-  background: #020202;
-  display: flex;
-  justify-content: center;
-}
+      .highlight-container {
+        max-width: 1100px;
+        width: 100%;
+        margin: 0 auto;
+        padding: 0 20px;
 
-.highlight-container {
-  max-width: 1100px;
-  width: 100%;
-  margin: 0 auto;
-  padding: 0 20px;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 30px;
+      }
 
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 30px;
-}
+      .highlight-card {
+        background: rgba(0, 255, 136, 0.06);
+        border: 1px solid rgba(0, 255, 136, 0.25);
+        border-radius: 18px;
+        padding: 30px 20px;
+        text-align: center;
+        backdrop-filter: blur(10px);
+        transition: 0.35s ease;
+      }
 
-.highlight-card {
-  background: rgba(0, 255, 136, 0.06);
-  border: 1px solid rgba(0, 255, 136, 0.25);
-  border-radius: 18px;
-  padding: 30px 20px;
-  text-align: center;
-  backdrop-filter: blur(10px);
-  transition: 0.35s ease;
-}
+      .highlight-card:hover {
+        transform: translateY(-8px) scale(1.03);
+        box-shadow: 0 0 25px rgba(0, 255, 136, 0.35);
+      }
 
-.highlight-card:hover {
-  transform: translateY(-8px) scale(1.03);
-  box-shadow: 0 0 25px rgba(0, 255, 136, 0.35);
-}
+      .highlight-card h3 {
+        font-size: 42px;
+        font-weight: 800;
+        color: var(--neon);
+        margin-bottom: 6px;
+        text-shadow: 0 0 14px rgba(0, 255, 136, 0.45);
+      }
 
-.highlight-card h3 {
-  font-size: 42px;
-  font-weight: 800;
-  color: var(--neon);
-  margin-bottom: 6px;
-  text-shadow: 0 0 14px rgba(0, 255, 136, 0.45);
-}
+      .highlight-card p {
+        font-size: 15px;
+        color: #baffd7;
+        opacity: 0.9;
+      }
 
-.highlight-card p {
-  font-size: 15px;
-  color: #baffd7;
-  opacity: 0.9;
-}
+      /* ===================== RESPONSIVE ===================== */
 
-/* ===================== RESPONSIVE ===================== */
+      @media (max-width: 900px) {
+        .highlight-container {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
 
-@media (max-width: 900px) {
-  .highlight-container {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
+      @media (max-width: 480px) {
+        .highlight-container {
+          grid-template-columns: 1fr;
+          gap: 20px;
+        }
 
-@media (max-width: 480px) {
-  .highlight-container {
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
-
-  .highlight-card h3 {
-    font-size: 36px;
-  }
-}
+        .highlight-card h3 {
+          font-size: 36px;
+        }
+      }
 
       /* SB */
     </style>
@@ -1019,35 +1016,35 @@
         <img class="item" src="assets/Docker.svg" />
         <img class="item" src="assets/Wireshark_icon.svg" />
         <img class="item" src="assets/Node.js.svg" />
+        <img class="item" src="assets/postman.svg" />
       </div>
     </section>
     <!-- TECH SECTION -->
 
     <!-- HIGHLIGHT SECTION -->
-<section class="highlight-section">
-  <div class="highlight-container">
-    <div class="highlight-card">
-      <h3 data-count="30">0</h3>
-      <p>CTF Challenges Solved</p>
-    </div>
+    <section class="highlight-section">
+      <div class="highlight-container">
+        <div class="highlight-card">
+          <h3 data-count="30">0</h3>
+          <p>CTF Challenges Solved</p>
+        </div>
 
-    <div class="highlight-card">
-      <h3 data-count="15">0</h3>
-      <p>Web Projects Built</p>
-    </div>
+        <div class="highlight-card">
+          <h3 data-count="15">0</h3>
+          <p>Web Projects Built</p>
+        </div>
 
-    <div class="highlight-card">
-      <h3 data-count="10">0</h3>
-      <p>Security Labs Completed</p>
-    </div>
+        <div class="highlight-card">
+          <h3 data-count="10">0</h3>
+          <p>Security Labs Completed</p>
+        </div>
 
-    <div class="highlight-card">
-      <h3 data-count="3">0</h3>
-      <p>Years Learning IT</p>
-    </div>
-  </div>
-</section>
-
+        <div class="highlight-card">
+          <h3 data-count="3">0</h3>
+          <p>Years Learning IT</p>
+        </div>
+      </div>
+    </section>
 
     <script>
       const roles = [
@@ -1141,36 +1138,36 @@
         });
       });
 
-       const counters = document.querySelectorAll(".highlight-card h3");
-  let counterPlayed = false;
+      const counters = document.querySelectorAll(".highlight-card h3");
+      let counterPlayed = false;
 
-  const counterObserver = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting && !counterPlayed) {
-        counters.forEach((counter) => {
-          const target = +counter.getAttribute("data-count");
-          let current = 0;
-          const speed = target / 60;
+      const counterObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !counterPlayed) {
+            counters.forEach((counter) => {
+              const target = +counter.getAttribute("data-count");
+              let current = 0;
+              const speed = target / 60;
 
-          const update = () => {
-            current += speed;
-            if (current < target) {
-              counter.textContent = Math.floor(current);
-              requestAnimationFrame(update);
-            } else {
-              counter.textContent = target;
-            }
-          };
+              const update = () => {
+                current += speed;
+                if (current < target) {
+                  counter.textContent = Math.floor(current);
+                  requestAnimationFrame(update);
+                } else {
+                  counter.textContent = target;
+                }
+              };
 
-          update();
+              update();
+            });
+
+            counterPlayed = true;
+          }
         });
+      });
 
-        counterPlayed = true;
-      }
-    });
-  });
-
-  counterObserver.observe(document.querySelector(".highlight-section"));
+      counterObserver.observe(document.querySelector(".highlight-section"));
     </script>
   </body>
 </html>
