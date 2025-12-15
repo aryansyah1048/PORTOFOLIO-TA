@@ -1140,6 +1140,37 @@
           item.style.animationDelay = `${delay}s`;
         });
       });
+
+       const counters = document.querySelectorAll(".highlight-card h3");
+  let counterPlayed = false;
+
+  const counterObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting && !counterPlayed) {
+        counters.forEach((counter) => {
+          const target = +counter.getAttribute("data-count");
+          let current = 0;
+          const speed = target / 60;
+
+          const update = () => {
+            current += speed;
+            if (current < target) {
+              counter.textContent = Math.floor(current);
+              requestAnimationFrame(update);
+            } else {
+              counter.textContent = target;
+            }
+          };
+
+          update();
+        });
+
+        counterPlayed = true;
+      }
+    });
+  });
+
+  counterObserver.observe(document.querySelector(".highlight-section"));
     </script>
   </body>
 </html>
