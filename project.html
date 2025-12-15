@@ -233,27 +233,29 @@
         }
       }
 
-      /* ================= TECH ICON STACK ================= */
+      /* ================= SVG TECH ICONS ================= */
 
       .tech-icons {
         display: flex;
         align-items: center;
         gap: 18px;
-        margin-top: 12px;
+        margin-top: 14px;
       }
 
-      .tech-icons i {
-        font-size: 28px;
-        color: #caffea;
-        opacity: 0.85;
-        transition: 0.3s ease;
+      /* DEFAULT: grayscale & calm */
+      .tech-icons img {
+        width: 28px;
+        height: 28px;
+        object-fit: contain;
+
+        transition: transform 0.3s ease, filter 0.3s ease, opacity 0.3s ease;
       }
 
-      .tech-icons i:hover {
-        color: var(--neon);
+      /* HOVER: color appears */
+      .tech-icons img:hover {
+        filter: none;
         opacity: 1;
         transform: translateY(-3px) scale(1.12);
-        text-shadow: 0 0 12px rgba(0, 255, 136, 0.5);
       }
 
       /* MOBILE CENTER */
@@ -261,6 +263,9 @@
         .tech-icons {
           justify-content: center;
         }
+      }
+      .tech-icons img:hover {
+        filter: drop-shadow(0 0 8px rgba(0, 255, 136, 0.5));
       }
     </style>
   </head>
@@ -281,31 +286,32 @@
       <div class="project-card">
         <!-- THUMBNAIL -->
         <div class="project-thumb">
-          <img
-            src="assets/projects/ctf-platform.jpg"
-            alt="CTF Writeup Platform"
-          />
+          <img src="assets/webptn.png" alt="Web PTN MAI" />
         </div>
 
         <!-- INFO -->
         <div class="project-info">
-          <h2>CTF Writeup Platform</h2>
+          <h2>Web PTN MAI</h2>
           <p>
             A secure platform for managing CTF writeups with authentication,
             role-based access control, and markdown rendering.
           </p>
 
           <div class="tech-icons">
-            <i class="devicon-laravel-plain" title="Laravel"></i>
-            <i class="devicon-mysql-plain" title="MySQL"></i>
-            <i class="devicon-docker-plain" title="Docker"></i>
-            <i class="devicon-nginx-original" title="Nginx"></i>
+            <img src="assets/icons/php.svg" alt="php" title="php" />
+            <img
+              src="assets/icons/js-svgrepo-com.svg"
+              alt="MySQL"
+              title="MySQL"
+            />
+            <img src="assets/Bootstrap.svg" alt="Bootstrap" title="Bootstrap" />
+            <img src="assets/MySQL.svg" alt="Mysql" title="Mysql" />
           </div>
         </div>
 
         <!-- ACTION -->
         <div class="project-actions">
-          <a href="#" class="primary">View Project</a>
+          <a href="https://webptnmai.my.id/" class="primary">View Project</a>
           <a
             href="https://github.com/aryansyah1048"
             target="_blank"
