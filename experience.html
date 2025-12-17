@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Experience | Aryansyah Mahendra</title>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+
+    <style>
+      :root {
+        --neon: #00ff88;
+        --dark: #020202;
+        --glass: rgba(255, 255, 255, 0.06);
+      }
+
+      body {
+        margin: 0;
+        font-family: Inter, sans-serif;
+        background: var(--dark);
+        color: #eaffea;
+      }
+
+      a {
+        color: var(--neon);
+        text-decoration: none;
+      }
+
+      /* ================= HEADER ================= */
+      .exp-hero {
+        padding: 140px 20px 90px;
+        text-align: center;
+        background: radial-gradient(
+          circle at top,
+          rgba(0, 255, 136, 0.18),
+          #020202 65%
+        );
+      }
+
+      .exp-hero h1 {
+        font-size: 46px;
+        font-weight: 800;
+        color: var(--neon);
+        margin-bottom: 12px;
+        text-shadow: 0 0 18px rgba(0, 255, 136, 0.45);
+      }
+
+      .exp-hero p {
+        max-width: 780px;
+        margin: 0 auto;
+        font-size: 17px;
+        line-height: 1.8;
+        opacity: 0.85;
+      }
+
+      /* ================= CONTAINER ================= */
+      .exp-container {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 100px 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 80px;
+      }
+
+      /* ================= SECTION ================= */
+      .exp-section h2 {
+        font-size: 32px;
+        color: var(--neon);
+        margin-bottom: 14px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .exp-section p {
+        font-size: 16px;
+        line-height: 1.8;
+        opacity: 0.9;
+        max-width: 900px;
+      }
+
+      /* ================= CARD ================= */
+      .exp-card {
+        background: var(--glass);
+        border: 1px solid rgba(0, 255, 136, 0.25);
+        border-radius: 22px;
+        padding: 35px 35px;
+        margin-top: 30px;
+        transition: 0.4s ease;
+      }
+
+      .exp-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 0 35px rgba(0, 255, 136, 0.35);
+      }
+
+      .exp-card h3 {
+        font-size: 22px;
+        margin-bottom: 6px;
+      }
+
+      .exp-meta {
+        font-size: 14px;
+        opacity: 0.7;
+        margin-bottom: 16px;
+      }
+
+      .exp-card ul {
+        padding-left: 18px;
+        line-height: 1.8;
+        font-size: 15px;
+      }
+
+      .exp-card li {
+        margin-bottom: 8px;
+      }
+
+      /* ================= TAGS ================= */
+      .tech-icons {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        margin-top: 14px;
+      }
+
+      /* DEFAULT: grayscale & calm */
+      .tech-icons img {
+        width: 28px;
+        height: 28px;
+        object-fit: contain;
+
+        transition: transform 0.3s ease, filter 0.3s ease, opacity 0.3s ease;
+      }
+
+      /* HOVER: color appears */
+      .tech-icons img:hover {
+        filter: none;
+        opacity: 1;
+        transform: translateY(-3px) scale(1.12);
+      }
+
+      /* ================= FOOTER ================= */
+      footer {
+        text-align: center;
+        padding: 50px 20px;
+        font-size: 14px;
+        opacity: 0.6;
+        border-top: 1px solid rgba(0, 255, 136, 0.15);
+      }
+
+      /* ================= RESPONSIVE ================= */
+      @media (max-width: 768px) {
+        .exp-hero h1 {
+          font-size: 34px;
+        }
+
+        .exp-container {
+          padding: 70px 20px;
+        }
+      }
+
+      @media (max-width: 900px) {
+        body {
+          overflow-x: hidden;
+        }
+        .tech-icons {
+          justify-content: center;
+        }
+      }
+      .tech-icons img:hover {
+        filter: drop-shadow(0 0 8px rgba(0, 255, 136, 0.5));
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- HERO -->
+    <section class="exp-hero">
+      <h1>Experience</h1>
+      <p>
+        Perjalanan belajar saya di dunia IT — membangun aplikasi, mengeksplorasi
+        keamanan sistem, dan mengasah kemampuan melalui praktik langsung serta
+        kompetisi.
+      </p>
+    </section>
+
+    <!-- CONTENT -->
+    <main class="exp-container">
+      <!-- JOURNEY -->
+      <section class="exp-section">
+        <h2><i class="fa-solid fa-road"></i> IT Journey</h2>
+        <p>
+          Saya merupakan santri tingkat SMA yang mengembangkan minat pada bidang
+          Cyber Security dan Web Development secara mandiri. Proses belajar saya
+          didominasi oleh praktik langsung, eksplorasi tools, serta partisipasi
+          dalam bootcamp dan kompetisi CTF.
+        </p>
+      </section>
+
+      <!-- WEB DEV -->
+      <section class="exp-section">
+        <h2><i class="fa-solid fa-code"></i> Web Development</h2>
+
+        <div class="exp-card">
+          <h3>Web Projects — School & Personal</h3>
+          <div class="exp-meta">2023 – Sekarang</div>
+
+          <ul>
+            <li>
+              Mengembangkan website penyimpanan berkas untuk kebutuhan internal
+              sekolah
+            </li>
+            <li>
+              Membangun mini project portfolio sebagai sarana dokumentasi dan
+              eksperimen teknologi
+            </li>
+            <li>
+              Mengintegrasikan konsep keamanan dan CTF ke dalam project berbasis
+              P5
+            </li>
+            <li>
+              Menerapkan prinsip secure-by-design dalam pengembangan aplikasi
+            </li>
+          </ul>
+          <div class="tech-icons">
+            <img src="assets/icons/php.svg" alt="php" title="php" />
+            <img
+              src="assets/icons/js-svgrepo-com.svg"
+              alt="MySQL"
+              title="MySQL"
+            />
+            <img src="assets/Bootstrap.svg" alt="Bootstrap" title="Bootstrap" />
+            <img src="assets/MySQL.svg" alt="Mysql" title="Mysql" />
+          </div>
+        </div>
+      </section>
+
+      <!-- CYBER -->
+      <section class="exp-section">
+        <h2><i class="fa-solid fa-shield-halved"></i> Cyber Security & CTF</h2>
+
+        <div class="exp-card">
+          <h3>CTF Player — Online & National Events</h3>
+          <div class="exp-meta">2022 – Sekarang</div>
+
+          <ul>
+            <li>
+              Aktif mengikuti CTF online: picoCTF, Hack The Box, TryHackMe
+            </li>
+            <li>Berpartisipasi dalam komunitas keamanan siber (T1CP)</li>
+            <li>
+              Finalis pada beberapa event nasional seperti CTF KOMINFO, Code
+              Challenge, dan FITCOM
+            </li>
+            <li>Fokus pada Web Exploitation, Forensics, dan Cryptography</li>
+          </ul>
+
+          <div class="tech-icons">
+            <img src="assets/icons/php.svg" alt="php" title="php" />
+            <img
+              src="assets/icons/js-svgrepo-com.svg"
+              alt="MySQL"
+              title="MySQL"
+            />
+            <img src="assets/Bootstrap.svg" alt="Bootstrap" title="Bootstrap" />
+            <img src="assets/MySQL.svg" alt="Mysql" title="Mysql" />
+          </div>
+        </div>
+      </section>
+
+      <!-- BOOTCAMP -->
+      <section class="exp-section">
+        <h2><i class="fa-solid fa-graduation-cap"></i> Bootcamp & Training</h2>
+
+        <div class="exp-card">
+          <h3>Cyber Security & Web Development Bootcamp</h3>
+          <div class="exp-meta">Hands-on Intensive Training</div>
+
+          <ul>
+            <li>Web application security & attack methodology</li>
+            <li>CTF strategy dan problem-solving berbasis tim</li>
+            <li>Secure web development & best practices</li>
+          </ul>
+
+          <div class="tech-icons">
+            <img src="assets/icons/php.svg" alt="php" title="php" />
+            <img
+              src="assets/icons/js-svgrepo-com.svg"
+              alt="MySQL"
+              title="MySQL"
+            />
+            <img src="assets/Bootstrap.svg" alt="Bootstrap" title="Bootstrap" />
+            <img src="assets/MySQL.svg" alt="Mysql" title="Mysql" />
+          </div>
+        </div>
+      </section>
+
+      <!-- FUTURE -->
+      <section class="exp-section">
+        <h2><i class="fa-solid fa-compass"></i> What I’m Looking For</h2>
+        <p>
+          Saat ini saya terbuka untuk kesempatan freelance, internship,
+          kolaborasi project, serta pengalaman belajar lanjutan di bidang Cyber
+          Security dan Web Development.
+        </p>
+      </section>
+    </main>
+
+    <footer>© 2025 Aryansyah Mahendra · Built with security & passion</footer>
+  </body>
+</html>
