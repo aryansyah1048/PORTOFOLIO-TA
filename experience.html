@@ -19,23 +19,88 @@
         --neon: #00ff88;
         --dark: #020202;
         --glass: rgba(255, 255, 255, 0.06);
+        --stroke: rgba(0, 255, 136, 0.25);
+        --stroke2: rgba(0, 255, 136, 0.35);
+        --text: #eaffea;
+        --muted: rgba(234, 255, 234, 0.75);
+        --shadow: 0 0 35px rgba(0, 255, 136, 0.18);
+        --radius: 22px;
+        --radius2: 18px;
+        --maxw: 1120px;
       }
 
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
       body {
         margin: 0;
-        font-family: Inter, sans-serif;
+        font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial,
+          sans-serif;
         background: var(--dark);
-        color: #eaffea;
+        color: var(--text);
+        overflow-x: hidden;
       }
-
       a {
         color: var(--neon);
         text-decoration: none;
       }
+      a:hover {
+        text-decoration: underline;
+      }
 
-      /* ================= HEADER ================= */
+      .bg-glow {
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        z-index: -2;
+        background: radial-gradient(
+            circle at 15% 10%,
+            rgba(0, 255, 136, 0.12),
+            transparent 55%
+          ),
+          radial-gradient(
+            circle at 85% 25%,
+            rgba(0, 255, 136, 0.08),
+            transparent 50%
+          ),
+          radial-gradient(
+            circle at 50% 90%,
+            rgba(0, 255, 136, 0.06),
+            transparent 55%
+          );
+      }
+      .grain {
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        z-index: -1;
+        opacity: 0.08;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");
+        background-size: 240px 240px;
+        mix-blend-mode: overlay;
+      }
+
+      .progress {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 3px;
+        width: 0%;
+        background: linear-gradient(
+          90deg,
+          rgba(0, 255, 136, 0.2),
+          rgba(0, 255, 136, 1)
+        );
+        box-shadow: 0 0 18px rgba(0, 255, 136, 0.45);
+        z-index: 50;
+      }
+
+      /* ================= HERO ================= */
       .exp-hero {
-        padding: 140px 20px 90px;
+        padding: 140px 20px 70px;
         text-align: center;
         background: radial-gradient(
           circle at top,
@@ -43,268 +108,594 @@
           #020202 65%
         );
       }
-
       .exp-hero h1 {
         font-size: 46px;
         font-weight: 800;
         color: var(--neon);
-        margin-bottom: 12px;
+        margin: 0 0 12px;
         text-shadow: 0 0 18px rgba(0, 255, 136, 0.45);
       }
-
       .exp-hero p {
-        max-width: 780px;
+        max-width: 860px;
         margin: 0 auto;
         font-size: 17px;
-        line-height: 1.8;
-        opacity: 0.85;
+        line-height: 1.85;
+        color: var(--muted);
+      }
+
+      /* ===== Stats ===== */
+      .stats {
+        max-width: var(--maxw);
+        margin: 34px auto 0;
+        padding: 0 20px;
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 14px;
+      }
+      .stat {
+        background: var(--glass);
+        border: 1px solid var(--stroke);
+        border-radius: var(--radius2);
+        padding: 16px;
+        text-align: left;
+      }
+      .stat .n {
+        font-size: 24px;
+        font-weight: 800;
+        color: var(--neon);
+        line-height: 1.1;
+      }
+      .stat .t {
+        font-size: 13px;
+        color: var(--muted);
+        margin-top: 4px;
       }
 
       /* ================= CONTAINER ================= */
       .exp-container {
-        max-width: 1100px;
+        max-width: var(--maxw);
         margin: 0 auto;
-        padding: 100px 20px;
+        padding: 70px 20px 90px;
         display: flex;
         flex-direction: column;
-        gap: 80px;
+        gap: 60px;
+      }
+
+      /* ================= CONTROLS ================= */
+      .controls {
+        position: sticky;
+        top: 12px;
+        z-index: 10;
+        background: rgba(2, 2, 2, 0.55);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(0, 255, 136, 0.1);
+        border-radius: var(--radius2);
+        padding: 12px;
+      }
+      .controls-inner {
+        display: grid;
+        grid-template-columns: 1fr auto; /* search + chips */
+        gap: 10px;
+        align-items: center;
+      }
+      .search {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        background: var(--glass);
+        border: 1px solid var(--stroke);
+        border-radius: 999px;
+        padding: 10px 12px;
+      }
+      .search i {
+        color: rgba(0, 255, 136, 0.85);
+      }
+      .search input {
+        width: 100%;
+        background: transparent;
+        border: 0;
+        outline: none;
+        color: var(--text);
+        font-size: 14px;
+      }
+      .search input::placeholder {
+        color: rgba(234, 255, 234, 0.45);
+      }
+
+      .chips {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      .chip {
+        border: 1px solid var(--stroke);
+        background: rgba(0, 255, 136, 0.08);
+        color: var(--neon);
+        padding: 8px 12px;
+        border-radius: 999px;
+        font-size: 13px;
+        cursor: pointer;
+        transition: 0.25s ease;
+        user-select: none;
+        white-space: nowrap;
+      }
+      .chip:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--shadow);
+      }
+      .chip.active {
+        background: rgba(0, 255, 136, 0.18);
+        border-color: var(--stroke2);
       }
 
       /* ================= SECTION ================= */
       .exp-section h2 {
-        font-size: 32px;
+        font-size: 28px;
         color: var(--neon);
-        margin-bottom: 14px;
+        margin: 0 0 14px;
         display: flex;
         align-items: center;
         gap: 12px;
       }
-
       .exp-section p {
-        font-size: 16px;
-        line-height: 1.8;
-        opacity: 0.9;
-        max-width: 900px;
+        font-size: 15.5px;
+        line-height: 1.85;
+        color: var(--muted);
+        margin: 0;
+        max-width: 920px;
+      }
+
+      /* ================= GRID (FIX HEIGHT BUG) ================= */
+      .grid {
+        margin-top: 24px;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 18px;
+        align-items: start; /* <- penting biar card sebelah nggak ikut memanjang */
       }
 
       /* ================= CARD ================= */
       .exp-card {
         background: var(--glass);
-        border: 1px solid rgba(0, 255, 136, 0.25);
-        border-radius: 22px;
-        padding: 35px 35px;
-        margin-top: 30px;
-        transition: 0.4s ease;
+        border: 1px solid var(--stroke);
+        border-radius: var(--radius);
+        padding: 18px;
+        transition: 0.35s ease;
+        position: relative;
+        overflow: hidden;
+        align-self: start; /* <- penting */
       }
-
       .exp-card:hover {
-        transform: translateY(-10px);
-        box-shadow: 0 0 35px rgba(0, 255, 136, 0.35);
+        transform: translateY(-8px);
+        box-shadow: 0 0 35px rgba(0, 255, 136, 0.22);
+        border-color: var(--stroke2);
       }
 
-      .exp-card h3 {
-        font-size: 22px;
-        margin-bottom: 6px;
+      .badge {
+        position: absolute;
+        right: 14px;
+        top: 14px;
+        font-size: 12px;
+        padding: 6px 10px;
+        border-radius: 999px;
+        border: 1px solid rgba(0, 255, 136, 0.22);
+        background: rgba(0, 255, 136, 0.1);
+        color: var(--neon);
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
       }
 
-      .exp-meta {
-        font-size: 14px;
-        opacity: 0.7;
-        margin-bottom: 16px;
+      .card-top {
+        display: flex;
+        gap: 14px;
+        align-items: center;
+        margin-top: 23px;
       }
-
-      .exp-card ul {
-        padding-left: 18px;
+      .logo {
+        width: 64px;
+        height: 64px;
+        border-radius: 14px;
+        background: rgba(0, 255, 136, 0.08);
+        padding: 10px;
+        border: 1px solid rgba(0, 255, 136, 0.25);
+        object-fit: contain;
+        flex: 0 0 auto;
+      }
+      .title {
+        font-size: 18px;
+        font-weight: 800;
+        margin: 0;
+      }
+      .meta {
+        margin-top: 6px;
+        font-size: 13px;
+        color: rgba(234, 255, 234, 0.65);
+      }
+      .desc {
+        margin-top: 12px;
+        color: var(--muted);
+        font-size: 14.5px;
         line-height: 1.8;
-        font-size: 15px;
       }
 
-      .exp-card li {
-        margin-bottom: 8px;
+      details {
+        margin-top: 12px;
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(0, 255, 136, 0.15);
+        border-radius: 16px;
+        padding: 10px 12px;
       }
-
-      /* ================= TAGS ================= */
-      .tech-icons {
+      summary {
+        cursor: pointer;
+        list-style: none;
         display: flex;
         align-items: center;
-        gap: 18px;
-        margin-top: 14px;
+        justify-content: space-between;
+        gap: 12px;
+        font-weight: 700;
+        color: rgba(234, 255, 234, 0.9);
+      }
+      summary::-webkit-details-marker {
+        display: none;
+      }
+      .sum-right {
+        color: rgba(0, 255, 136, 0.9);
+        font-size: 13px;
       }
 
-      /* DEFAULT: grayscale & calm */
-      .tech-icons img {
-        width: 28px;
-        height: 28px;
+      /* ===== Detail: Slider Foto (opsional) ===== */
+      .carousel {
+        margin-top: 12px;
+        position: relative;
+      }
+      .track {
+        display: flex;
+        gap: 12px;
+        overflow-x: auto;
+        padding: 6px 4px 8px;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+      }
+      .track::-webkit-scrollbar {
+        height: 8px;
+      }
+      .track::-webkit-scrollbar-thumb {
+        background: rgba(0, 255, 136, 0.18);
+        border-radius: 999px;
+      }
+
+      .slide {
+        flex: 0 0 auto;
+        width: 240px;
+        height: 150px;
+        border-radius: 16px;
+        object-fit: cover;
+        cursor: pointer;
+        border: 1px solid rgba(0, 255, 136, 0.22);
+        scroll-snap-align: start;
+        transition: 0.25s ease;
+        filter: saturate(1.05) contrast(1.02);
+      }
+      .slide:hover {
+        transform: translateY(-3px) scale(1.02);
+        box-shadow: 0 0 22px rgba(0, 255, 136, 0.2);
+      }
+
+      .carbtn {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 38px;
+        height: 38px;
+        border-radius: 14px;
+        border: 1px solid rgba(0, 255, 136, 0.22);
+        background: rgba(0, 255, 136, 0.1);
+        color: var(--neon);
+        cursor: pointer;
+        transition: 0.2s ease;
+        backdrop-filter: blur(8px);
+      }
+      .carbtn:hover {
+        transform: translateY(-50%) translateY(-2px);
+        box-shadow: var(--shadow);
+      }
+      .carbtn.left {
+        left: 8px;
+      }
+      .carbtn.right {
+        right: 8px;
+      }
+      .carbtn[disabled] {
+        opacity: 0.35;
+        cursor: not-allowed;
+      }
+
+      .carhint {
+        margin-top: 8px;
+        font-size: 12px;
+        color: rgba(234, 255, 234, 0.6);
+      }
+      .no-photos {
+        margin-top: 10px;
+        font-size: 13px;
+        color: rgba(234, 255, 234, 0.65);
+        padding: 10px 12px;
+        border-radius: 14px;
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px dashed rgba(0, 255, 136, 0.18);
+      }
+
+      /* Tags */
+      .tags {
+        margin-top: 12px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .tag {
+        padding: 6px 12px;
+        font-size: 12px;
+        border-radius: 999px;
+        background: rgba(0, 255, 136, 0.14);
+        border: 1px solid rgba(0, 255, 136, 0.25);
+        color: var(--neon);
+      }
+
+      /* Actions */
+      .actions {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-top: 12px;
+        align-items: center;
+      }
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        border: 1px solid rgba(0, 255, 136, 0.25);
+        background: rgba(0, 255, 136, 0.1);
+        color: var(--neon);
+        padding: 9px 12px;
+        border-radius: 14px;
+        font-size: 13px;
+        cursor: pointer;
+        transition: 0.25s ease;
+        text-decoration: none;
+      }
+      .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--shadow);
+        border-color: rgba(0, 255, 136, 0.45);
+        text-decoration: none;
+      }
+      .btn.secondary {
+        background: rgba(255, 255, 255, 0.05);
+        border-color: rgba(255, 255, 255, 0.12);
+        color: rgba(234, 255, 234, 0.92);
+      }
+
+      /* ===== Modal viewer ===== */
+      .modal {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.72);
+        backdrop-filter: blur(10px);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        padding: 18px;
+        z-index: 60;
+      }
+      .modal.open {
+        display: flex;
+      }
+      .modal-card {
+        width: min(980px, 100%);
+        background: rgba(10, 10, 10, 0.55);
+        border: 1px solid rgba(0, 255, 136, 0.22);
+        border-radius: 22px;
+        overflow: hidden;
+        box-shadow: 0 0 40px rgba(0, 255, 136, 0.18);
+      }
+      .modal-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 12px 14px;
+        background: rgba(0, 255, 136, 0.06);
+        border-bottom: 1px solid rgba(0, 255, 136, 0.14);
+      }
+      .modal-title {
+        font-weight: 800;
+        color: rgba(234, 255, 234, 0.92);
+        font-size: 14px;
+      }
+      .modal-actions {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+      }
+      .iconbtn {
+        width: 38px;
+        height: 38px;
+        border-radius: 12px;
+        border: 1px solid rgba(0, 255, 136, 0.22);
+        background: rgba(0, 255, 136, 0.08);
+        color: var(--neon);
+        cursor: pointer;
+        transition: 0.2s ease;
+      }
+      .iconbtn:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--shadow);
+      }
+
+      .modal-body {
+        background: rgba(0, 0, 0, 0.35);
+      }
+      .modal-img {
+        width: 100%;
+        height: min(70vh, 620px);
         object-fit: contain;
-
-        transition: transform 0.3s ease, filter 0.3s ease, opacity 0.3s ease;
+        display: block;
+        background: rgba(0, 0, 0, 0.35);
+      }
+      .modal-caption {
+        padding: 10px 14px 14px;
+        color: rgba(234, 255, 234, 0.75);
+        font-size: 13px;
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
       }
 
-      /* HOVER: color appears */
-      .tech-icons img:hover {
-        filter: none;
+      /* ===== Reveal animation ===== */
+      .reveal {
+        opacity: 0;
+        transform: translateY(14px);
+        transition: 0.55s ease;
+      }
+      .reveal.visible {
         opacity: 1;
-        transform: translateY(-3px) scale(1.12);
+        transform: translateY(0);
       }
 
-      /* ================= FOOTER ================= */
       footer {
         text-align: center;
         padding: 50px 20px;
         font-size: 14px;
-        opacity: 0.6;
+        opacity: 0.65;
         border-top: 1px solid rgba(0, 255, 136, 0.15);
       }
 
-      /* ================= RESPONSIVE ================= */
+      @media (max-width: 980px) {
+        .grid {
+          grid-template-columns: 1fr;
+        }
+        .controls-inner {
+          grid-template-columns: 1fr;
+        }
+        .stats {
+          grid-template-columns: 1fr;
+        }
+        .chips {
+          justify-content: flex-start;
+        }
+        .slide {
+          width: 210px;
+          height: 132px;
+        }
+      }
       @media (max-width: 768px) {
+        .exp-hero {
+          padding: 120px 18px 60px;
+        }
         .exp-hero h1 {
           font-size: 34px;
         }
-
         .exp-container {
-          padding: 70px 20px;
+          padding: 60px 18px 80px;
         }
       }
-
-      @media (max-width: 900px) {
-        body {
-          overflow-x: hidden;
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
         }
-        .tech-icons {
-          justify-content: center;
+        .exp-card,
+        .chip,
+        .btn,
+        .slide,
+        .reveal {
+          transition: none !important;
         }
-      }
-      .tech-icons img:hover {
-        filter: drop-shadow(0 0 8px rgba(0, 255, 136, 0.5));
+        .exp-card:hover,
+        .chip:hover,
+        .btn:hover,
+        .slide:hover {
+          transform: none !important;
+        }
       }
     </style>
   </head>
 
   <body>
-    <!-- HERO -->
+    <div class="bg-glow"></div>
+    <div class="grain"></div>
+    <div class="progress" id="progress"></div>
+
     <section class="exp-hero">
       <h1>Experience</h1>
       <p>
         Perjalanan belajar saya di dunia IT — membangun aplikasi, mengeksplorasi
-        keamanan sistem, dan mengasah kemampuan melalui praktik langsung serta
-        kompetisi.
+        keamanan sistem, dan mengasah kemampuan lewat praktik langsung,
+        bootcamp, serta kompetisi.
       </p>
+
+      <div class="stats">
+        <div class="stat">
+          <div class="n" id="statTotal">0</div>
+          <div class="t">Total pengalaman</div>
+        </div>
+        <div class="stat">
+          <div class="n" id="statComp">0</div>
+          <div class="t">Lomba / CTF</div>
+        </div>
+        <div class="stat">
+          <div class="n" id="statProj">0</div>
+          <div class="t">Project</div>
+        </div>
+      </div>
     </section>
 
-    <!-- CONTENT -->
     <main class="exp-container">
-      <!-- JOURNEY -->
-      <section class="exp-section">
+      <section class="exp-section reveal">
         <h2><i class="fa-solid fa-road"></i> IT Journey</h2>
         <p>
-          Saya merupakan santri tingkat SMA yang mengembangkan minat pada bidang
-          Cyber Security dan Web Development secara mandiri. Proses belajar saya
-          didominasi oleh praktik langsung, eksplorasi tools, serta partisipasi
-          dalam bootcamp dan kompetisi CTF.
+          Saya merupakan santri tingkat SMA yang mengembangkan minat pada Cyber
+          Security dan Web Development secara mandiri. Proses belajar saya
+          dominan praktik langsung, eksplorasi tools, serta partisipasi dalam
+          bootcamp dan kompetisi.
         </p>
       </section>
 
-      <!-- WEB DEV -->
-      <section class="exp-section">
-        <h2><i class="fa-solid fa-code"></i> Web Development</h2>
-
-        <div class="exp-card">
-          <h3>Web Projects — School & Personal</h3>
-          <div class="exp-meta">2023 – Sekarang</div>
-
-          <ul>
-            <li>
-              Mengembangkan website penyimpanan berkas untuk kebutuhan internal
-              sekolah
-            </li>
-            <li>
-              Membangun mini project portfolio sebagai sarana dokumentasi dan
-              eksperimen teknologi
-            </li>
-            <li>
-              Mengintegrasikan konsep keamanan dan CTF ke dalam project berbasis
-              P5
-            </li>
-            <li>
-              Menerapkan prinsip secure-by-design dalam pengembangan aplikasi
-            </li>
-          </ul>
-          <div class="tech-icons">
-            <img src="assets/icons/php.svg" alt="php" title="php" />
-            <img
-              src="assets/icons/js-svgrepo-com.svg"
-              alt="MySQL"
-              title="MySQL"
+      <section class="controls reveal" aria-label="Filter pengalaman">
+        <div class="controls-inner">
+          <div class="search" role="search">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input
+              id="q"
+              type="text"
+              placeholder="Cari pengalaman… (contoh: CTF, Dicoding, Web)"
             />
-            <img src="assets/Bootstrap.svg" alt="Bootstrap" title="Bootstrap" />
-            <img src="assets/MySQL.svg" alt="Mysql" title="Mysql" />
           </div>
+
+          <div class="chips" id="chips" aria-label="Filter kategori"></div>
         </div>
       </section>
 
-      <!-- CYBER -->
-      <section class="exp-section">
-        <h2><i class="fa-solid fa-shield-halved"></i> Cyber Security & CTF</h2>
+      <section class="exp-section reveal">
+        <h2><i class="fa-solid fa-layer-group"></i> Experiences</h2>
+        <p>
+          Klik <b>Detail</b> untuk melihat <b>slider foto</b> (opsional). Jadi
+          tidak cuma teks—kalau ada highlight, fotonya bisa digeser.
+        </p>
 
-        <div class="exp-card">
-          <h3>CTF Player — Online & National Events</h3>
-          <div class="exp-meta">2022 – Sekarang</div>
+        <div class="grid" id="grid"></div>
 
-          <ul>
-            <li>
-              Aktif mengikuti CTF online: picoCTF, Hack The Box, TryHackMe
-            </li>
-            <li>Berpartisipasi dalam komunitas keamanan siber (T1CP)</li>
-            <li>
-              Finalis pada beberapa event nasional seperti CTF KOMINFO, Code
-              Challenge, dan FITCOM
-            </li>
-            <li>Fokus pada Web Exploitation, Forensics, dan Cryptography</li>
-          </ul>
-
-          <div class="tech-icons">
-            <img src="assets/icons/php.svg" alt="php" title="php" />
-            <img
-              src="assets/icons/js-svgrepo-com.svg"
-              alt="MySQL"
-              title="MySQL"
-            />
-            <img src="assets/Bootstrap.svg" alt="Bootstrap" title="Bootstrap" />
-            <img src="assets/MySQL.svg" alt="Mysql" title="Mysql" />
-          </div>
-        </div>
+        <p
+          id="empty"
+          style="
+            display: none;
+            margin-top: 16px;
+            color: rgba(234, 255, 234, 0.7);
+          "
+        >
+          Tidak ada hasil yang cocok. Coba kata kunci lain atau ganti kategori.
+        </p>
       </section>
 
-      <!-- BOOTCAMP -->
-      <section class="exp-section">
-        <h2><i class="fa-solid fa-graduation-cap"></i> Bootcamp & Training</h2>
-
-        <div class="exp-card">
-          <h3>Cyber Security & Web Development Bootcamp</h3>
-          <div class="exp-meta">Hands-on Intensive Training</div>
-
-          <ul>
-            <li>Web application security & attack methodology</li>
-            <li>CTF strategy dan problem-solving berbasis tim</li>
-            <li>Secure web development & best practices</li>
-          </ul>
-
-          <div class="tech-icons">
-            <img src="assets/icons/php.svg" alt="php" title="php" />
-            <img
-              src="assets/icons/js-svgrepo-com.svg"
-              alt="MySQL"
-              title="MySQL"
-            />
-            <img src="assets/Bootstrap.svg" alt="Bootstrap" title="Bootstrap" />
-            <img src="assets/MySQL.svg" alt="Mysql" title="Mysql" />
-          </div>
-        </div>
-      </section>
-
-      <!-- FUTURE -->
-      <section class="exp-section">
+      <section class="exp-section reveal">
         <h2><i class="fa-solid fa-compass"></i> What I’m Looking For</h2>
         <p>
           Saat ini saya terbuka untuk kesempatan freelance, internship,
@@ -314,6 +705,490 @@
       </section>
     </main>
 
-    <footer>© 2025 Aryansyah Mahendra · Built with security & passion</footer>
+    <footer>© 2026 Aryansyah Mahendra · Built with security & passion</footer>
+
+    <!-- MODAL -->
+    <div class="modal" id="modal" aria-hidden="true">
+      <div
+        class="modal-card"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Highlight viewer"
+      >
+        <div class="modal-top">
+          <div class="modal-title" id="modalTitle">Highlight</div>
+          <div class="modal-actions">
+            <button class="iconbtn" id="prevBtn" aria-label="Sebelumnya">
+              <i class="fa-solid fa-chevron-left"></i>
+            </button>
+            <button class="iconbtn" id="nextBtn" aria-label="Berikutnya">
+              <i class="fa-solid fa-chevron-right"></i>
+            </button>
+            <button class="iconbtn" id="closeBtn" aria-label="Tutup">
+              <i class="fa-solid fa-xmark"></i>
+            </button>
+          </div>
+        </div>
+        <div class="modal-body">
+          <img class="modal-img" id="modalImg" alt="Highlight image" />
+        </div>
+        <div class="modal-caption" id="modalCaption"></div>
+      </div>
+    </div>
+
+    <script>
+      const CATEGORIES = [
+        { key: "all", label: "All", icon: "fa-solid fa-wand-magic-sparkles" },
+        {
+          key: "competition",
+          label: "Lomba / CTF",
+          icon: "fa-solid fa-flag-checkered",
+        },
+        {
+          key: "bootcamp",
+          label: "Bootcamp",
+          icon: "fa-solid fa-graduation-cap",
+        },
+        { key: "project", label: "Project", icon: "fa-solid fa-code" },
+      ];
+
+      /**
+       * ====== CARA Nambah Pengalaman (copy–paste object ini) ======
+       * - Kalau ada foto highlight: isi photos: [{src, caption}, ...]
+       * - Kalau belum ada foto: photos: []
+       *
+       * TEMPLATE:
+       * {
+       *   id: "unik-id",
+       *   category: "competition" | "bootcamp" | "project",
+       *   badge: "Finalist",
+       *   title: "Nama pengalaman",
+       *   org: "Nama organisasi / tim",
+       *   year: 2025,
+       *   type: "CTF / Course / Project",
+       *   logo: "assets/logo/xxx.png",
+       *   desc: "Deskripsi singkat...",
+       *   tags: ["Tag1", "Tag2"],
+       *   links: [{ label: "Write Up", url: "#" }],
+       *   photos: [
+       *     { src: "assets/highlight/1.jpg", caption: "Caption 1" },
+       *     { src: "assets/highlight/2.jpg", caption: "Caption 2" }
+       *   ]
+       * }
+       */
+
+      const EXPERIENCES = [
+        {
+          id: "JCC2025",
+          category: "competition",
+          badge: "Finalist",
+          title: "Finalis JATIM CyberSecurity 2025 (JCC2025)",
+          org: "Team 404NotFound",
+          year: 2025,
+          type: "Capture The Flag",
+          logo: "assets/EXP/logoJCC-removebg-preview.png",
+          desc: "Di JCC2025 aku tidak menyangka bisa lanjut di babak final. Dari pengalaman ini aku belajar bahwa keterbatasan akses belajar di pesantren tetap bisa bersaing dengan latihan, rasa ingin tahu, dan kerja sama tim.",
+          tags: ["Cyber Security", "CTF", "Teamwork"],
+          links: [
+            {
+              label: "Write Up",
+              url: "assets/EXP/404NotFound_MAS_AMANATUL_UMMAH_SURABAYA.doc",
+            },
+          ],
+          photos: [
+            { src: "assets/EXP/EXP_JCC.webp", caption: "Final JCC2025" },
+            { src: "assets/EXP/EXP.png", caption: "Tim 404NotFound" },
+            { src: "assets/EXP/EXP.jpg", caption: "Tim 404NotFound" },
+          ],
+        },
+
+        {
+          id: "Flashcom ID",
+          category: "bootcamp",
+          badge: "Course",
+          title: "Flachcom — Belajar Web Pemograman dan E-commerce Developer",
+          org: "Dicoding",
+          year: 2024,
+          type: "Offline Course",
+          logo: "assets/EXP/Logo-Flashcom.png",
+          desc: "Di Flashcom ID aku belajar banyak tentang web pemograman dari HTML hingga Python sampai ke framework Laravel khusus untuk platfrom E-Commerce.",
+          tags: ["Laravel", "Web Developer", "Flashcom"],
+          links: [{ label: "Certificate", url: "#" }],
+          photos: [], // gak ada foto -> detail akan menampilkan “Belum ada highlight”
+        },
+
+        {
+          id: "portfolio-project",
+          category: "project",
+          badge: "Personal",
+          title: "Personal Portfolio Website (Neon Glass UI)",
+          org: "Self Project",
+          year: 2025,
+          type: "Web Development",
+          logo: "assets/EXP/web.png",
+          desc: "Membangun portfolio dengan UI neon-glass, fokus pada performa, struktur konten, dan komponen interaktif (modal, animasi ringan).",
+          tags: ["HTML", "CSS", "JavaScript", "UI/UX"],
+          links: [
+            { label: "Repo", url: "#" },
+            { label: "Live Demo", url: "#" },
+          ],
+          photos: [
+            // {
+            //   src: "assets/",
+            //   caption: "Homepage portfolio",
+            // },
+            // { src: "assets/highlight/porto-2.jpg", caption: "Section Experience" }
+          ],
+        },
+      ];
+
+      // ===== Elements
+      const grid = document.getElementById("grid");
+      const empty = document.getElementById("empty");
+      const q = document.getElementById("q");
+      const chipsWrap = document.getElementById("chips");
+
+      // Modal
+      const modal = document.getElementById("modal");
+      const modalImg = document.getElementById("modalImg");
+      const modalTitle = document.getElementById("modalTitle");
+      const modalCaption = document.getElementById("modalCaption");
+      const prevBtn = document.getElementById("prevBtn");
+      const nextBtn = document.getElementById("nextBtn");
+      const closeBtn = document.getElementById("closeBtn");
+
+      let activeCategory = "all";
+      let modalState = { list: [], idx: 0, title: "" };
+
+      function escapeHtml(str) {
+        return String(str ?? "")
+          .replaceAll("&", "&amp;")
+          .replaceAll("<", "&lt;")
+          .replaceAll(">", "&gt;")
+          .replaceAll('"', "&quot;")
+          .replaceAll("'", "&#039;");
+      }
+
+      function badgeIcon(category) {
+        if (category === "competition") return "fa-solid fa-trophy";
+        if (category === "bootcamp") return "fa-solid fa-graduation-cap";
+        if (category === "project") return "fa-solid fa-code";
+        return "fa-solid fa-circle";
+      }
+
+      function labelCategory(category) {
+        const map = {
+          competition: "Lomba/CTF",
+          bootcamp: "Bootcamp",
+          project: "Project",
+        };
+        return map[category] || category;
+      }
+
+      function renderChips() {
+        chipsWrap.innerHTML = "";
+        CATEGORIES.forEach((c) => {
+          const btn = document.createElement("div");
+          btn.className = "chip" + (c.key === activeCategory ? " active" : "");
+          btn.setAttribute("role", "button");
+          btn.setAttribute("tabindex", "0");
+          btn.innerHTML = `<i class="${c.icon}"></i> ${c.label}`;
+          btn.onclick = () => {
+            activeCategory = c.key;
+            renderChips();
+            render();
+          };
+          btn.onkeydown = (e) => {
+            if (e.key === "Enter" || e.key === " ") btn.click();
+          };
+          chipsWrap.appendChild(btn);
+        });
+      }
+
+      function getFiltered() {
+        const term = (q.value || "").trim().toLowerCase();
+        return EXPERIENCES.filter((x) => {
+          const catOk =
+            activeCategory === "all" ? true : x.category === activeCategory;
+          if (!catOk) return false;
+          if (!term) return true;
+
+          const hay = [
+            x.title,
+            x.org,
+            x.type,
+            x.year,
+            ...(x.tags || []),
+            ...(x.photos || []).map((p) => p.caption || ""), // biar caption foto juga bisa dicari
+          ]
+            .join(" ")
+            .toLowerCase();
+
+          return hay.includes(term);
+        });
+      }
+
+      function render() {
+        const arr = getFiltered();
+        grid.innerHTML = "";
+        empty.style.display = arr.length ? "none" : "block";
+
+        arr.forEach((x) => {
+          const card = document.createElement("article");
+          card.className = "exp-card reveal";
+
+          const links = (x.links || [])
+            .map(
+              (l) => `
+            <a class="btn ${
+              l.label.toLowerCase().includes("write") ? "" : "secondary"
+            }"
+               href="${l.url}" target="_blank" rel="noopener">
+              <i class="fa-solid fa-arrow-up-right-from-square"></i> ${escapeHtml(
+                l.label
+              )}
+            </a>
+          `
+            )
+            .join("");
+
+          const tags = (x.tags || [])
+            .map((t) => `<span class="tag">${escapeHtml(t)}</span>`)
+            .join("");
+
+          const photos = x.photos || [];
+          const hasPhotos = photos.length > 0;
+
+          const detailContent = hasPhotos
+            ? `
+            <div class="carousel" data-exp="${x.id}">
+              <button class="carbtn left" type="button" aria-label="Geser kiri" data-dir="-1">
+                <i class="fa-solid fa-chevron-left"></i>
+              </button>
+
+              <div class="track" aria-label="Highlight photos">
+                ${photos
+                  .map(
+                    (p, idx) => `
+                  <img
+                    class="slide"
+                    src="${p.src}"
+                    alt="Highlight ${idx + 1}"
+                    loading="lazy"
+                    data-exp="${x.id}"
+                    data-idx="${idx}"
+                  />
+                `
+                  )
+                  .join("")}
+              </div>
+
+              <button class="carbtn right" type="button" aria-label="Geser kanan" data-dir="1">
+                <i class="fa-solid fa-chevron-right"></i>
+              </button>
+
+              
+            </div>
+          `
+            : `
+            <div class="no-photos">
+              <i class="fa-solid fa-image"></i> Belum ada highlight foto untuk pengalaman ini.
+            </div>
+          `;
+
+          card.innerHTML = `
+            <span class="badge">
+              <i class="${badgeIcon(x.category)}"></i>
+              ${escapeHtml(labelCategory(x.category))} • ${escapeHtml(
+            x.badge || x.type || ""
+          )}
+            </span>
+
+            <div class="card-top">
+              <img class="logo" src="${x.logo}" alt="${escapeHtml(
+            x.org
+          )} logo" />
+              <div>
+                <h3 class="title">${escapeHtml(x.title)}</h3>
+                <div class="meta">${escapeHtml(x.org)} • ${escapeHtml(
+            x.type
+          )} • ${escapeHtml(String(x.year))}</div>
+              </div>
+            </div>
+
+            <div class="desc">${escapeHtml(x.desc)}</div>
+
+            <details>
+              <summary>
+                <span><i class="fa-solid fa-images"></i> Detail</span>
+                <span class="sum-right">${
+                  hasPhotos ? `${photos.length} foto` : "No highlight"
+                }</span>
+              </summary>
+
+              ${detailContent}
+
+              ${links ? `<div class="actions">${links}</div>` : ""}
+            </details>
+
+            <div class="tags">${tags}</div>
+          `;
+
+          grid.appendChild(card);
+        });
+
+        // Click slide -> open modal
+        grid.querySelectorAll(".slide").forEach((img) => {
+          img.addEventListener("click", () => {
+            const expId = img.getAttribute("data-exp");
+            const idx = Number(img.getAttribute("data-idx"));
+            const exp = EXPERIENCES.find((e) => e.id === expId);
+            if (!exp || !(exp.photos || []).length) return;
+            openModal(exp.title, exp.photos, idx);
+          });
+        });
+
+        // Carousel buttons per card
+        grid.querySelectorAll(".carousel").forEach((car) => {
+          const track = car.querySelector(".track");
+          const left = car.querySelector(".carbtn.left");
+          const right = car.querySelector(".carbtn.right");
+
+          const updateBtns = () => {
+            const maxScroll = track.scrollWidth - track.clientWidth;
+            left.disabled = track.scrollLeft <= 2;
+            right.disabled = track.scrollLeft >= maxScroll - 2;
+          };
+
+          const scrollByOne = (dir) => {
+            const firstSlide = track.querySelector(".slide");
+            const step = firstSlide
+              ? firstSlide.getBoundingClientRect().width + 12
+              : 260;
+            track.scrollBy({ left: dir * step, behavior: "smooth" });
+          };
+
+          left.addEventListener("click", () => scrollByOne(-1));
+          right.addEventListener("click", () => scrollByOne(1));
+          track.addEventListener("scroll", updateBtns, { passive: true });
+
+          requestAnimationFrame(updateBtns);
+        });
+
+        requestAnimationFrame(() => revealNow());
+      }
+
+      // ===== Modal logic
+      function openModal(title, photos, idx) {
+        modalState = { title, list: photos, idx };
+        modal.classList.add("open");
+        modal.setAttribute("aria-hidden", "false");
+        document.body.style.overflow = "hidden";
+        paintModal();
+      }
+
+      function closeModal() {
+        modal.classList.remove("open");
+        modal.setAttribute("aria-hidden", "true");
+        document.body.style.overflow = "";
+      }
+
+      function paintModal() {
+        const { title, list, idx } = modalState;
+        const item = list[idx];
+        modalTitle.textContent = `Highlight • ${title} (${idx + 1}/${
+          list.length
+        })`;
+        modalImg.src = item.src;
+        modalCaption.textContent = item.caption ? item.caption : "—";
+        prevBtn.disabled = list.length <= 1;
+        nextBtn.disabled = list.length <= 1;
+      }
+
+      function prev() {
+        const { list } = modalState;
+        modalState.idx = (modalState.idx - 1 + list.length) % list.length;
+        paintModal();
+      }
+      function next() {
+        const { list } = modalState;
+        modalState.idx = (modalState.idx + 1) % list.length;
+        paintModal();
+      }
+
+      modal.addEventListener("click", (e) => {
+        if (e.target === modal) closeModal();
+      });
+      closeBtn.addEventListener("click", closeModal);
+      prevBtn.addEventListener("click", prev);
+      nextBtn.addEventListener("click", next);
+
+      window.addEventListener("keydown", (e) => {
+        if (!modal.classList.contains("open")) return;
+        if (e.key === "Escape") closeModal();
+        if (e.key === "ArrowLeft") prev();
+        if (e.key === "ArrowRight") next();
+      });
+
+      // ===== Reveal animation
+      let io;
+      function revealNow() {
+        if (io) io.disconnect();
+        io = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((ent) => {
+              if (ent.isIntersecting) ent.target.classList.add("visible");
+            });
+          },
+          { threshold: 0.1 }
+        );
+        document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
+      }
+
+      // ===== Scroll progress
+      function setupProgress() {
+        const bar = document.getElementById("progress");
+        function onScroll() {
+          const h = document.documentElement;
+          const sc = h.scrollTop || document.body.scrollTop;
+          const max = h.scrollHeight - h.clientHeight || 1;
+          const p = Math.max(0, Math.min(1, sc / max));
+          bar.style.width = (p * 100).toFixed(2) + "%";
+        }
+        window.addEventListener("scroll", onScroll, { passive: true });
+        onScroll();
+      }
+
+      // ===== Stats
+      function setStats() {
+        const total = EXPERIENCES.length;
+        const comp = EXPERIENCES.filter(
+          (x) => x.category === "competition"
+        ).length;
+        const proj = EXPERIENCES.filter((x) => x.category === "project").length;
+        animateNumber(document.getElementById("statTotal"), total);
+        animateNumber(document.getElementById("statComp"), comp);
+        animateNumber(document.getElementById("statProj"), proj);
+      }
+      function animateNumber(el, target) {
+        const dur = 650;
+        const t0 = performance.now();
+        function tick(t) {
+          const p = Math.min(1, (t - t0) / dur);
+          el.textContent = Math.round(target * p);
+          if (p < 1) requestAnimationFrame(tick);
+        }
+        requestAnimationFrame(tick);
+      }
+
+      // ===== Init
+      renderChips();
+      render();
+      setStats();
+      setupProgress();
+      revealNow();
+
+      q.addEventListener("input", render);
+    </script>
   </body>
 </html>
