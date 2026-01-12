@@ -6,419 +6,503 @@
     <title>Projects | Aryansyah Mahendra</title>
 
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
     />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css"
-    />
 
     <style>
       :root {
         --neon: #00ff88;
-        --dark: #020202;
+        --neon-dim: rgba(0, 255, 136, 0.1);
+        --dark: #050505;
+        --card-bg: rgba(20, 20, 20, 0.6);
+        --text-gray: #b0b0b0;
+      }
+
+      * {
+        box-sizing: border-box;
       }
 
       body {
         margin: 0;
-        font-family: Inter, sans-serif;
-        background: var(--dark);
+        font-family: "Inter", sans-serif;
+        background-color: var(--dark);
         color: #fff;
+        overflow-x: hidden;
+        position: relative;
+      }
+
+      /* ================= BACKGROUND FX ================= */
+      /* Grid Texture */
+      .bg-grid {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: linear-gradient(
+            rgba(255, 255, 255, 0.03) 1px,
+            transparent 1px
+          ),
+          linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+        background-size: 40px 40px;
+        z-index: -2;
+        pointer-events: none;
+      }
+
+      /* Animated Blobs (Membuat background hidup) */
+      .blob {
+        position: fixed;
+        width: 500px;
+        height: 500px;
+        background: var(--neon);
+        filter: blur(150px);
+        opacity: 0.15;
+        border-radius: 50%;
+        z-index: -1;
+        animation: float 10s infinite alternate;
+      }
+
+      .blob:nth-child(1) {
+        top: -100px;
+        left: -100px;
+      }
+      .blob:nth-child(2) {
+        bottom: -100px;
+        right: -100px;
+        animation-delay: -5s;
+        background: #00ccff; /* Sedikit variasi warna biru cyan */
+      }
+
+      @keyframes float {
+        0% {
+          transform: translate(0, 0);
+        }
+        100% {
+          transform: translate(50px, 50px);
+        }
       }
 
       /* ================= HEADER ================= */
       .page-header {
-        padding: 140px 20px 100px;
+        padding: 120px 20px 80px;
         text-align: center;
-        background: radial-gradient(
-          circle at top,
-          rgba(0, 255, 136, 0.18),
-          #020202 65%
-        );
+        position: relative;
       }
 
       .page-header h1 {
-        font-size: 48px;
+        font-size: 3.5rem;
         font-weight: 800;
-        color: var(--neon);
-        text-shadow: 0 0 20px rgba(0, 255, 136, 0.45);
+        margin: 0;
+        background: linear-gradient(to right, #fff, var(--neon));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        letter-spacing: -1px;
       }
 
       .page-header p {
-        max-width: 650px;
-        margin: 15px auto 0;
-        font-size: 16px;
-        color: #baffd7;
-        opacity: 0.9;
+        max-width: 600px;
+        margin: 20px auto 0;
+        font-size: 1.1rem;
+        color: var(--text-gray);
+        line-height: 1.6;
       }
 
       /* ================= PROJECT LIST ================= */
       .project-section {
         max-width: 1100px;
         margin: 0 auto;
-        padding: 0 20px 140px;
+        padding: 0 20px 100px;
       }
 
-      /* ================= PROJECT CARD WITH THUMBNAIL ================= */
-
+      /* ================= PROJECT CARD ================= */
       .project-card {
         display: grid;
-        grid-template-columns: 1.1fr 1.4fr 0.8fr;
-        gap: 45px;
-        padding: 45px;
-        margin-bottom: 70px;
+        grid-template-columns: 350px 1fr auto; /* Layout: Image | Content | Actions */
+        gap: 30px;
 
-        background: rgba(0, 255, 136, 0.06);
-        border: 1px solid rgba(0, 255, 136, 0.25);
-        border-radius: 30px;
-        backdrop-filter: blur(14px);
+        background: var(--card-bg);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 24px;
+        padding: 25px;
+        margin-bottom: 60px;
 
-        transition: 0.45s cubic-bezier(0.2, 0.8, 0.2, 1);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        position: relative;
+        overflow: hidden;
+      }
+
+      /* Efek Glow saat Hover Card */
+      .project-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border-radius: 24px;
+        border: 1px solid transparent;
+        transition: 0.4s;
+        pointer-events: none;
       }
 
       .project-card:hover {
-        transform: translateY(-10px);
-        box-shadow: 0 0 45px rgba(0, 255, 136, 0.4);
+        transform: translateY(-8px);
+        background: rgba(30, 30, 30, 0.8);
+        box-shadow: 0 20px 40px -10px rgba(0, 255, 136, 0.15);
+      }
+
+      .project-card:hover::before {
+        border-color: var(--neon);
       }
 
       /* THUMBNAIL */
       .project-thumb {
-        position: relative;
-        border-radius: 22px;
+        width: 100%;
+        height: 240px;
+        border-radius: 16px;
         overflow: hidden;
-        background: #000;
-      }
-
-      .project-thumb::after {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background: linear-gradient(
-          to top,
-          rgba(0, 0, 0, 0.55),
-          rgba(0, 0, 0, 0.15)
-        );
+        position: relative;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
       }
 
       .project-thumb img {
         width: 100%;
         height: 100%;
         object-fit: cover;
-        transition: 0.6s ease;
-        filter: brightness(0.85);
+        transition: transform 0.6s ease;
+        filter: grayscale(20%);
       }
 
       .project-card:hover .project-thumb img {
-        transform: scale(1.04);
-        filter: brightness(1);
+        transform: scale(1.1);
+        filter: grayscale(0%);
       }
 
       /* INFO */
-      .project-info h2 {
-        font-size: 28px;
-        margin-bottom: 14px;
-        color: var(--neon);
-      }
-
-      .project-info p {
-        font-size: 15px;
-        line-height: 1.7;
-        margin-bottom: 20px;
-        color: #eaffea;
-      }
-
-      /* ACTION */
-      .project-actions {
+      .project-info {
         display: flex;
         flex-direction: column;
         justify-content: center;
-        gap: 18px;
       }
 
-      /* ================= RESPONSIVE ================= */
-
-      @media (max-width: 900px) {
-        .project-card {
-          grid-template-columns: 1fr;
-          text-align: center;
-        }
-
-        .project-thumb {
-          height: 220px;
-        }
-
-        .project-actions {
-          flex-direction: row;
-          justify-content: center;
-        }
-      }
-
-      /* LEFT */
       .project-info h2 {
-        font-size: 28px;
-        margin-bottom: 15px;
-        color: var(--neon);
-      }
-
-      .project-info p {
-        font-size: 15px;
-        line-height: 1.7;
-        color: #eaffea;
-        opacity: 0.95;
-        margin-bottom: 20px;
-      }
-
-      .tech-stack {
+        font-size: 1.8rem;
+        margin: 0 0 15px;
+        color: #fff;
         display: flex;
-        flex-wrap: wrap;
+        align-items: center;
         gap: 10px;
       }
 
-      .tech-stack span {
-        padding: 6px 14px;
-        font-size: 13px;
-        border-radius: 20px;
-        background: rgba(0, 255, 136, 0.15);
-        border: 1px solid rgba(0, 255, 136, 0.35);
+      .project-info h2::before {
+        content: "#";
         color: var(--neon);
+        font-size: 1.2rem;
       }
 
-      /* RIGHT */
+      .project-info p {
+        font-size: 0.95rem;
+        line-height: 1.7;
+        color: var(--text-gray);
+        margin: 0 0 25px;
+      }
+
+      /* TECH ICONS WRAPPER */
+      .tech-wrapper {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        background: rgba(0, 0, 0, 0.3);
+        padding: 10px 15px;
+        border-radius: 12px;
+        width: fit-content;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+      }
+
+      .tech-label {
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: var(--neon);
+        margin-right: 5px;
+        font-weight: 700;
+      }
+
+      .tech-icons img {
+        width: 24px;
+        height: 24px;
+        object-fit: contain;
+        transition: 0.3s;
+        opacity: 0.7;
+      }
+
+      .tech-icons img:hover {
+        opacity: 1;
+        transform: translateY(-3px);
+        filter: drop-shadow(0 0 5px var(--neon));
+      }
+
+      /* ACTIONS (BUTTONS) */
       .project-actions {
         display: flex;
         flex-direction: column;
         justify-content: center;
-        gap: 18px;
+        gap: 15px;
+        min-width: 140px;
+        border-left: 1px solid rgba(255, 255, 255, 0.05);
+        padding-left: 30px;
       }
 
-      .project-actions a {
+      .btn {
         text-decoration: none;
-        padding: 14px 26px;
-        border-radius: 14px;
+        padding: 12px 20px;
+        border-radius: 8px;
         font-weight: 600;
+        font-size: 0.9rem;
         text-align: center;
-        transition: 0.35s ease;
+        transition: 0.3s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        position: relative;
+        overflow: hidden;
       }
 
-      .project-actions a.primary {
+      .btn-primary {
         background: var(--neon);
-        color: #020202;
+        color: #000;
+        box-shadow: 0 0 15px rgba(0, 255, 136, 0.4);
       }
 
-      .project-actions a.secondary {
-        border: 1px solid rgba(0, 255, 136, 0.6);
+      .btn-primary:hover {
+        background: #fff;
+        box-shadow: 0 0 25px rgba(0, 255, 136, 0.7);
+        transform: translateY(-2px);
+      }
+
+      .btn-secondary {
+        background: transparent;
+        color: #fff;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+
+      .btn-secondary:hover {
+        border-color: var(--neon);
         color: var(--neon);
-      }
-
-      .project-actions a:hover {
-        transform: translateY(-4px) scale(1.04);
-        box-shadow: 0 0 25px rgba(0, 255, 136, 0.45);
+        background: rgba(0, 255, 136, 0.05);
       }
 
       /* ================= RESPONSIVE ================= */
       @media (max-width: 900px) {
+        .page-header h1 {
+          font-size: 2.5rem;
+        }
+
         .project-card {
           grid-template-columns: 1fr;
-          text-align: center;
+          text-align: left;
+          gap: 20px;
+          padding: 20px;
+        }
+
+        .project-thumb {
+          height: 200px;
         }
 
         .project-actions {
           flex-direction: row;
-          justify-content: center;
+          border-left: none;
+          padding-left: 0;
+          border-top: 1px solid rgba(255, 255, 255, 0.05);
+          padding-top: 20px;
         }
-      }
 
-      /* ================= SVG TECH ICONS ================= */
-
-      .tech-icons {
-        display: flex;
-        align-items: center;
-        gap: 18px;
-        margin-top: 14px;
-      }
-
-      /* DEFAULT: grayscale & calm */
-      .tech-icons img {
-        width: 28px;
-        height: 28px;
-        object-fit: contain;
-
-        transition: transform 0.3s ease, filter 0.3s ease, opacity 0.3s ease;
-      }
-
-      /* HOVER: color appears */
-      .tech-icons img:hover {
-        filter: none;
-        opacity: 1;
-        transform: translateY(-3px) scale(1.12);
-      }
-
-      /* MOBILE CENTER */
-      @media (max-width: 900px) {
-        .tech-icons {
-          justify-content: center;
+        .btn {
+          flex: 1;
         }
-      }
-      .tech-icons img:hover {
-        filter: drop-shadow(0 0 8px rgba(0, 255, 136, 0.5));
+
+        .tech-wrapper {
+          width: 100%;
+          justify-content: flex-start;
+          flex-wrap: wrap;
+        }
       }
     </style>
   </head>
 
   <body>
-    <!-- HEADER -->
+    <div class="bg-grid"></div>
+    <div class="blob"></div>
+    <div class="blob"></div>
+
     <section class="page-header">
       <h1>Selected Projects</h1>
       <p>
         A collection of projects I built, secured, and experimented with —
-        combining development, security, and problem-solving.
+        combining development, security, and creative problem-solving.
       </p>
     </section>
 
-    <!-- PROJECTS -->
     <section class="project-section">
-      <!-- PROJECT 1 -->
-      <div class="project-card">
-        <!-- THUMBNAIL -->
+      <article class="project-card">
         <div class="project-thumb">
-          <img src="assets/webptn.png" alt="Web PTN MAI" />
+          <img src="assets/projectweb.png" alt="Web PTN MAI" loading="lazy" />
         </div>
 
-        <!-- INFO -->
         <div class="project-info">
           <h2>Web PTN MAI</h2>
           <p>
-            Disinilah aku sebagai TIMPIN disekolah berinisiatif untuk membangun
-            website khusus untuk mempermudah teman2 dan guru2 mengaksess berkas2
-            yang telah diupload, bagi saya sukses tidak dilihat dari seberapa
-            banyak materi tetapi suksess adalah seberapa kalian memberi nilai
-            positif untuk generasi mendatang dilingkungan sekitar
+            Platform sekolah untuk mempermudah akses berkas guru dan siswa.
+            Sebagai TIMPIN, saya berinisiatif membangun sistem ini untuk
+            memberikan dampak positif bagi generasi mendatang di lingkungan
+            sekitar.
           </p>
 
-          <div class="tech-icons">
-            <img src="assets/icons/php.svg" alt="php" title="php" />
-            <img
-              src="assets/icons/js-svgrepo-com.svg"
-              alt="MySQL"
-              title="MySQL"
-            />
-            <img src="assets/Bootstrap.svg" alt="Bootstrap" title="Bootstrap" />
-            <img src="assets/MySQL.svg" alt="Mysql" title="Mysql" />
+          <div class="tech-wrapper">
+            <span class="tech-label">Stack:</span>
+            <div class="tech-icons">
+              <img src="assets/icons/php.svg" alt="PHP" title="PHP" />
+              <img
+                src="assets/icons/js-svgrepo-com.svg"
+                alt="JS"
+                title="JavaScript"
+              />
+              <img
+                src="assets/Bootstrap.svg"
+                alt="Bootstrap"
+                title="Bootstrap"
+              />
+              <img src="assets/MySQL.svg" alt="MySQL" title="MySQL" />
+            </div>
           </div>
         </div>
 
-        <!-- ACTION -->
         <div class="project-actions">
-          <a target="_blank" href="https://webptnmai.my.id/" class="primary"
-            >View Project</a
+          <a
+            href="https://webptnmai.my.id/"
+            target="_blank"
+            class="btn btn-primary"
           >
+            <i class="fa-solid fa-arrow-up-right-from-square"></i> Visit
+          </a>
           <a
             href="https://github.com/aryansyah1048"
             target="_blank"
-            class="secondary"
+            class="btn btn-secondary"
           >
-            GitHub
+            <i class="fa-brands fa-github"></i> Source
           </a>
         </div>
-      </div>
+      </article>
 
-      <!-- PROJECT 2 -->
-      <div class="project-card">
-        <!-- THUMBNAIL -->
+      <article class="project-card">
         <div class="project-thumb">
-          <img src="assets/miniproject.png" alt="CTF Writeup Platform" />
+          <img src="assets/miniproject.png" alt="Portfolio" loading="lazy" />
         </div>
 
-        <!-- INFO -->
         <div class="project-info">
-          <h2>Mini Project Portofolio</h2>
+          <h2>Portfolio V1</h2>
           <p>
-            Disini aku merasa dibidang IT adalah passion ku karena aku bangga
-            sekali dengan rasa penasaran saya di dunia IT terutama di web
-            developer inilah project dan portofolio pertamaku, aku sangat takjub
-            dengan antusias saya terhadap bidang yang saya tekuni.
+            Manifestasi rasa penasaran saya di dunia IT. Ini adalah portofolio
+            pertama yang menandai awal perjalanan saya sebagai web developer,
+            dibangun dengan semangat eksplorasi tinggi.
           </p>
 
-          <div class="tech-icons">
-            <img src="assets/Vercel.svg" alt="verclel" title="vercel" />
-            <img
-              src="assets/icons/html5_18891.webp"
-              alt="html5"
-              title="html5"
-            />
-            <img src="assets/Bootstrap.svg" alt="Bootstrap" title="Bootstrap" />
-            <img
-              style="border-radius: 50%"
-              src="assets/icons/aos.png"
-              alt="AOS"
-              title="AOS Animation"
-            />
+          <div class="tech-wrapper">
+            <span class="tech-label">Stack:</span>
+            <div class="tech-icons">
+              <img src="assets/Vercel.svg" alt="Vercel" title="Vercel" />
+              <img
+                src="assets/icons/html5_18891.webp"
+                alt="HTML5"
+                title="HTML5"
+              />
+              <img
+                src="assets/Bootstrap.svg"
+                alt="Bootstrap"
+                title="Bootstrap"
+              />
+              <img
+                src="assets/icons/aos.png"
+                style="border-radius: 50%"
+                alt="AOS"
+                title="Animation"
+              />
+            </div>
           </div>
         </div>
 
-        <!-- ACTION -->
         <div class="project-actions">
-          <a href="https://portfolio-by-yan.vercel.app/" class="primary"
-            >View Project</a
+          <a
+            href="https://portfolio-by-yan.vercel.app/"
+            target="_blank"
+            class="btn btn-primary"
           >
+            <i class="fa-solid fa-arrow-up-right-from-square"></i> Visit
+          </a>
           <a
             href="https://github.com/aryansyah1048"
             target="_blank"
-            class="secondary"
+            class="btn btn-secondary"
           >
-            GitHub
+            <i class="fa-brands fa-github"></i> Source
           </a>
         </div>
-      </div>
+      </article>
 
-      <!-- PROJECT 3 -->
-      <div class="project-card">
-        <!-- THUMBNAIL -->
+      <article class="project-card">
         <div class="project-thumb">
-          <img src="assets/silactf.png" alt="SilaCTF" />
+          <img src="assets/silactf.png" alt="SilaCTF" loading="lazy" />
         </div>
 
-        <!-- INFO -->
         <div class="project-info">
-          <h2>SilaCTF</h2>
+          <h2>SilaCTF Platform</h2>
           <p>
-            SilaCTF adalah platfrom yang menggabungkan nilai P5 dan Cyber
-            Security tujuan SilaCTF adalah untuk membentuk profil P5 generasi
-            muda, disinilah profil P5 dan problem solving di temukan secara
-            holistik
+            Platform CTF (Capture The Flag) yang menggabungkan nilai P5 dan
+            Cyber Security. Bertujuan membentuk profil pelajar yang mampu
+            melakukan problem solving secara holistik dan kritis.
           </p>
 
-          <div class="tech-icons">
-            <img src="assets/icons/php.svg" alt="php" title="php" />
-            <img
-              src="assets/icons/jsdeliver-removebg-preview.png"
-              alt="jsdeliver"
-              title="jsdeliver"
-            />
-            <img src="assets/Bootstrap.svg" alt="Bootstrap" title="Bootstrap" />
-            <img src="assets/MySQL.svg" alt="My SQL" title="My MySQL" />
+          <div class="tech-wrapper">
+            <span class="tech-label">Stack:</span>
+            <div class="tech-icons">
+              <img src="assets/icons/php.svg" alt="PHP" title="PHP" />
+              <img
+                src="assets/Bootstrap.svg"
+                alt="Bootstrap"
+                title="Bootstrap"
+              />
+              <img src="assets/MySQL.svg" alt="MySQL" title="MySQL" />
+            </div>
           </div>
         </div>
 
-        <!-- ACTION -->
         <div class="project-actions">
-          <a href="https://ctf.webptnmai.my.id/" class="primary"
-            >View Project</a
+          <a
+            href="https://ctf.webptnmai.my.id/"
+            target="_blank"
+            class="btn btn-primary"
           >
+            <i class="fa-solid fa-arrow-up-right-from-square"></i> Visit
+          </a>
           <a
             href="https://github.com/aryansyah1048"
             target="_blank"
-            class="secondary"
+            class="btn btn-secondary"
           >
-            GitHub
+            <i class="fa-brands fa-github"></i> Source
           </a>
         </div>
-      </div>
+      </article>
     </section>
   </body>
 </html>

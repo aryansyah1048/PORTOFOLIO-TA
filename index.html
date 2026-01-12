@@ -98,7 +98,14 @@
       <div class="nav-container">
         <div class="nav-logo">Aryansyah.dev</div>
 
-        <ul class="nav-links">
+        <!-- HAMBURGER -->
+        <div class="hamburger" id="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+
+        <ul class="nav-links" id="nav-links">
           <li><a href="project.html">Project</a></li>
           <li><a href="blogs.html">Blogs</a></li>
           <li><a href="experience.html">Experience</a></li>
@@ -296,6 +303,7 @@
         <img class="item" src="assets/MySQL.svg" />
         <img class="item" src="assets/nmap-logo.svg" />
         <img class="item" src="assets/google-search-console.svg" />
+        <img class="item" src="assets/xampp-seeklogo.svg" />
       </div>
 
       <!-- ROW 2 -->
@@ -520,8 +528,8 @@
       observer.observe(skillSection);
 
       /* ==============================
-       TECH SECTION ANIMATION
-    =============================== */
+        TECH SECTION ANIMATION
+      =============================== */
       document.querySelectorAll(".wrapper").forEach((row) => {
         const items = row.querySelectorAll(".item");
         const total = items.length;
@@ -563,6 +571,12 @@
       });
 
       counterObserver.observe(document.querySelector(".highlight-section"));
+      const hamburger = document.getElementById("hamburger");
+      const navLinks = document.getElementById("nav-links");
+
+      hamburger.addEventListener("click", () => {
+        navLinks.classList.toggle("active");
+      });
     </script>
   </body>
 </html>
@@ -570,9 +584,9 @@
 <!-- CARA UPDATE TO GITHUB -->
 
 <!-- 
-git add .
+  git add .
 
-git commit -m "update"
+  git commit -m "update"
 
-git push 
--->
+  git push 
+  -->

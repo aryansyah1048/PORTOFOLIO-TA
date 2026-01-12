@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      Aryansyah Mahendra — Senior Cyber Security & Fullstack Developer
+    </title>
+
+    <meta
+      name="description"
+      content="Portofolio profesional Aryansyah Mahendra. Fokus pada Web Security, Pentesting, dan Modern Web Development."
+    />
+    <meta name="author" content="Aryansyah Mahendra" />
+    <link rel="icon" href="assets/YDEV.png" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="assets/css/style.css" />
+  </head>
+  <body>
+    <div id="preloader">
+      <div class="loader-content">
+        <div class="loader-logo">ARYAN<span>.</span></div>
+        <div class="loader-bar"></div>
+      </div>
+    </div>
+
+    <div id="cursor"></div>
+    <div id="cursor-blur"></div>
+
+    <div class="bg-system">
+      <div class="noise-overlay"></div>
+      <div class="grid-layer"></div>
+      <div class="blob-gradient blob-1"></div>
+      <div class="blob-gradient blob-2"></div>
+      <div class="blob-gradient blob-3"></div>
+    </div>
+
+    <nav class="main-nav">
+      <div class="container nav-wrapper">
+        <a href="#" class="brand">
+          <span class="brand-text">ARYAN</span><span class="dot">.</span>
+        </a>
+
+        <ul class="nav-links">
+          <li><a href="#about" class="nav-item">About</a></li>
+          <li><a href="#expertise" class="nav-item">Expertise</a></li>
+          <li><a href="#experience" class="nav-item">Experience</a></li>
+          <li><a href="project.html" class="nav-item">Projects</a></li>
+          <li><a href="#contact" class="nav-cta">Let's Talk</a></li>
+        </ul>
+
+        <button class="menu-toggle" aria-label="Toggle Menu">
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </button>
+      </div>
+    </nav>
+
+    <div class="mobile-overlay">
+      <div class="mobile-menu-content">
+        <a href="#about">About</a>
+        <a href="#expertise">Expertise</a>
+        <a href="project.html">Projects</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+
+    <main>
+      <section class="hero-section">
+        <div class="container">
+          <div class="hero-grid">
+            <div class="hero-info" data-aos="fade-right">
+              <div class="status-indicator">
+                <span class="pulse"></span>
+                <span class="status-text"
+                  >Available for Full-time Opportunities</span
+                >
+              </div>
+              <h1 class="hero-title">
+                Ensuring <span class="gradient-text">Security</span> <br />
+                In Every <span class="font-mono">Pixel.</span>
+              </h1>
+              <p class="hero-lead">
+                I am Aryansyah Mahendra, a
+                <strong>Cyber Security Researcher</strong> &
+                <strong>Software Engineer</strong> specialized in building
+                high-performance applications with a security-first mindset.
+              </p>
+              <div class="hero-actions">
+                <a href="#contact" class="btn btn-filled">Start a Project</a>
+                <a href="assets/CV.pdf" class="btn btn-outline">
+                  <span>Get Resume</span>
+                  <i class="fa-solid fa-arrow-down"></i>
+                </a>
+              </div>
+              <div class="hero-socials">
+                <a href="#" class="social-icon"
+                  ><i class="fa-brands fa-github"></i
+                ></a>
+                <a href="#" class="social-icon"
+                  ><i class="fa-brands fa-linkedin-in"></i
+                ></a>
+                <a href="#" class="social-icon"
+                  ><i class="fa-brands fa-instagram"></i
+                ></a>
+              </div>
+            </div>
+
+            <div class="hero-visual" data-aos="fade-left">
+              <div class="bento-card hero-card">
+                <div class="card-header">
+                  <div class="dots">
+                    <span></span><span></span><span></span>
+                  </div>
+                  <span class="header-label">Terminal — secure_session</span>
+                </div>
+                <div class="card-body font-mono">
+                  <p class="line">
+                    <span class="t-green">➜</span>
+                    <span class="t-blue">~/aryansyah</span> git status
+                  </p>
+                  <p class="line t-dim">On branch production</p>
+                  <p class="line t-dim">
+                    Nothing to commit, working tree clean
+                  </p>
+                  <p class="line">
+                    <span class="t-green">➜</span>
+                    <span class="t-blue">~/aryansyah</span> sudo nmap -sV
+                    target.io
+                  </p>
+                  <p class="line t-dim">Scanning... [85% completed]</p>
+                  <div class="cursor-line"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="highlight-section">
+        <div class="container">
+          <div class="stats-container bento-grid">
+            <div class="stat-box bento-item" data-aos="zoom-in">
+              <h3 class="counter" data-target="24">0</h3>
+              <p>Completed Projects</p>
+            </div>
+            <div
+              class="stat-box bento-item"
+              data-aos="zoom-in"
+              data-aos-delay="100"
+            >
+              <h3 class="counter" data-target="15">0</h3>
+              <p>CTF Achievements</p>
+            </div>
+            <div
+              class="stat-box bento-item"
+              data-aos="zoom-in"
+              data-aos-delay="200"
+            >
+              <h3 class="counter" data-target="99">0</h3>
+              <p>Uptime Security</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="expertise-section" id="expertise">
+        <div class="container">
+          <div class="section-heading" data-aos="fade-up">
+            <span class="sub-title">What I Do</span>
+            <h2 class="title">Technical Expertise</h2>
+          </div>
+
+          <div class="expertise-grid">
+            <div class="exp-card bento-item glass" data-aos="fade-up">
+              <div class="exp-icon">
+                <i class="fa-solid fa-shield-halved"></i>
+              </div>
+              <h3>Cyber Security</h3>
+              <p>
+                Penetration testing, vulnerability assessment, and implementing
+                zero-trust architecture.
+              </p>
+              <div class="tag-cloud">
+                <span>Burp Suite</span><span>OWASP</span><span>Metasploit</span>
+              </div>
+            </div>
+
+            <div
+              class="exp-card bento-item glass"
+              data-aos="fade-up"
+              data-aos-delay="100"
+            >
+              <div class="exp-icon"><i class="fa-solid fa-code"></i></div>
+              <h3>Development</h3>
+              <p>
+                Engineering robust backends and pixel-perfect frontends using
+                modern frameworks.
+              </p>
+              <div class="tag-cloud">
+                <span>Laravel</span><span>React.js</span><span>Next.js</span>
+              </div>
+            </div>
+
+            <div
+              class="exp-card bento-item glass"
+              data-aos="fade-up"
+              data-aos-delay="200"
+            >
+              <div class="exp-icon"><i class="fa-solid fa-server"></i></div>
+              <h3>DevOps</h3>
+              <p>
+                Managing secure cloud infrastructure and automated CI/CD
+                pipelines.
+              </p>
+              <div class="tag-cloud">
+                <span>Docker</span><span>Linux</span><span>AWS</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="tech-marquee-section">
+        <div class="marquee-wrapper">
+          <div class="marquee-content">
+            <div class="tech-pill">
+              <img src="assets/Laravel.svg" alt="" /> <span>Laravel</span>
+            </div>
+            <div class="tech-pill">
+              <img src="assets/React.svg" alt="" /> <span>React</span>
+            </div>
+            <div class="tech-pill">
+              <img src="assets/Next.js.svg" alt="" /> <span>Next.js</span>
+            </div>
+            <div class="tech-pill">
+              <img src="assets/Tailwind CSS.svg" alt="" /> <span>Tailwind</span>
+            </div>
+            <div class="tech-pill">
+              <img src="assets/Node.js.svg" alt="" /> <span>Node.js</span>
+            </div>
+            <div class="tech-pill">
+              <img src="assets/Linux.svg" alt="" /> <span>Linux</span>
+            </div>
+            <div class="tech-pill">
+              <img src="assets/Docker.svg" alt="" /> <span>Docker</span>
+            </div>
+            <div class="tech-pill">
+              <img src="assets/Laravel.svg" alt="" /> <span>Laravel</span>
+            </div>
+            <div class="tech-pill">
+              <img src="assets/React.svg" alt="" /> <span>React</span>
+            </div>
+            <div class="tech-pill">
+              <img src="assets/Next.js.svg" alt="" /> <span>Next.js</span>
+            </div>
+            <div class="tech-pill">
+              <img src="assets/Tailwind CSS.svg" alt="" /> <span>Tailwind</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="contact-section" id="contact">
+        <div class="container">
+          <div class="contact-card glass" data-aos="zoom-in">
+            <div class="contact-info">
+              <h2>Have a project in mind?</h2>
+              <p>
+                Let's discuss how we can build something amazing and secure
+                together.
+              </p>
+            </div>
+            <div class="contact-action">
+              <a href="mailto:contact@aryansyah.dev" class="btn-large"
+                >aryansyah.dev@gmail.com</a
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="main-footer">
+      <div class="container">
+        <div class="footer-bottom">
+          <p>&copy; 2025 Aryansyah Mahendra. Engineered with precision.</p>
+          <div class="footer-links">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Security Credits</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      // 1. Initializing Animations
+      AOS.init({ duration: 1000, once: true, offset: 50 });
+
+      // 2. Preloader Logic
+      window.addEventListener("load", () => {
+        const preloader = document.getElementById("preloader");
+        setTimeout(() => {
+          preloader.style.opacity = "0";
+          setTimeout(() => (preloader.style.display = "none"), 500);
+        }, 1000);
+      });
+
+      // 3. Custom Mouse Follower
+      const cursor = document.getElementById("cursor");
+      const blur = document.getElementById("cursor-blur");
+      document.addEventListener("mousemove", (e) => {
+        cursor.style.left = e.clientX + "px";
+        cursor.style.top = e.clientY + "px";
+        blur.style.left = e.clientX - 150 + "px";
+        blur.style.top = e.clientY - 150 + "px";
+      });
+
+      // 4. Counter Animation logic
+      const counters = document.querySelectorAll(".counter");
+      const observerOptions = { threshold: 0.5 };
+
+      const counterObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const target = +entry.target.getAttribute("data-target");
+            let current = 0;
+            const increment = target / 50;
+            const updateCounter = () => {
+              if (current < target) {
+                current += increment;
+                entry.target.innerText =
+                  Math.ceil(current) + (target === 99 ? "%" : "+");
+                setTimeout(updateCounter, 20);
+              } else {
+                entry.target.innerText = target + (target === 99 ? "%" : "+");
+              }
+            };
+            updateCounter();
+            observer.unobserve(entry.target);
+          }
+        });
+      }, observerOptions);
+
+      counters.forEach((c) => counterObserver.observe(c));
+
+      // 5. Mobile Navbar Toggle
+      const menuBtn = document.querySelector(".menu-toggle");
+      const mobileMenu = document.querySelector(".mobile-overlay");
+      menuBtn.addEventListener("click", () => {
+        menuBtn.classList.toggle("active");
+        mobileMenu.classList.toggle("active");
+      });
+    </script>
+  </body>
+</html>
